@@ -10,7 +10,7 @@ let webstore = new Vue({
                 price: 66,
                 img: "img/math.png",
                 imgAlt: 'Math image',
-                spaces: 5,
+                spaces: 6,
             },
             {
                 id: 2,
@@ -67,21 +67,37 @@ let webstore = new Vue({
 
     computed: {
         cartItemCount: function () {
-            return this.cart.length || 0;
+            return this.cart.length || "";
         },
 
-        canAddToCart: function () {
-            this.products.forEach(function (prod) {
-                console.log(prod.spaces);
-            })
-        }
+       
     },
 
     methods: {
-        addToCart: function () {
-            console.log("asdasd");
-            this.cart.push(this.products.id);
-        }
+        addToCart: function (product) {
+            this.cart.push(product.id);
+            product.spaces--;
+        },
+
+        canAddToCart: function (product) {
+            
+            return product.spaces > 0 ;
+        },
+
+        cartCount:function(id){
+                let count =0;
+                for(let i=0; i< this.cart.length;i++){
+                    if(this.cart[i]===id){
+                        console.log(this.cart[i] + " cart");
+                        console.log(i+" iterator");
+                        console.log(count);
+                        count++
+                    }
+                }
+
+                return count;
+
+        },
     },
 
 
