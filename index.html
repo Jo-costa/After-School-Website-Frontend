@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/b41a748a30.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>After School Club</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <nav>
+            <h1 v-text="sitename"></h1>
+            <button class="checkout"><span class="qty">{{cartItemCount}}</span><i class="fa-solid fa-cart-shopping"></i>Checkout</button>
+        </nav>
+        <main>
+            <div v-for="product in products" class="row product">
+                <div class="col col-expand">
+
+                    <p><strong>Subject: </strong>{{product.subject}}</p>
+                    <p><strong>Location: </strong> {{product.location}}</p>
+                    <p><strong>Price: </strong>{{product.price | formatPrice}}</p>
+                    <p><strong>Spaces available: </strong>{{product.spaces}}</p>
+                </div>
+                <div class="col">
+                    <figure>
+                        <img v-bind:src="product.img" v-bind:alt="product.imgAlt">
+                    </figure>
+
+                </div>
+
+                <button class="add-btn" v-on:click="addToCart" v-if="canAddToCart">
+                    Add to Cart
+                </button>
+                <button class="add-btn" disabled='disabled' v-else>
+                    Add to Cart
+                </button>
+            </div>
+
+        </main>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
