@@ -8,21 +8,23 @@ body{
     display: flex;
     flex-direction: row;
     font-size: 1em;
-    
+    background-color: rgb(255, 255, 255);
+    overflow: scroll;
 }
 
 #app {
     margin: auto;
-    width: 100%;  
+    width: 100%;
     }
 
 nav {
-    background-color: rgba(194, 194, 188, 0.605);
-    padding: 10px;
+    background-color: rgba(180, 188, 225, 0.605);
+    padding: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    border-bottom: solid 1px;
 }
 
 nav h1 {
@@ -32,24 +34,32 @@ nav h1 {
 
 main{
     margin: auto;
+    width: 100%;
+    margin: 50px auto 50px auto;
+}
+
+.container {
+    margin: auto;
     width: 90%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(400px, 4fr));
     column-gap: 10px;
     row-gap: 10px;
-    margin: 50px auto 50px auto;
-    
-
 }
 
 .row {
     display: grid;
-    grid-template-columns:2fr auto;    
+    grid-template-columns: auto 2fr;
     justify-content: space-between;
     border: solid 2px rgba(34, 33, 33, 0.626);
-    max-width: 400px;
+    max-width: 500px;
     border-radius: 10px;
     padding: 20px;
+}
+
+.col {
+    display: flex;
+    flex-direction: row;
 }
 
 .col-expand{

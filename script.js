@@ -3,6 +3,7 @@ let webstore = new Vue({
     el: '#app',
     data: {
         sitename: 'After School Club',
+        showProduct: true,
         products: [{
                 id: 1,
                 subject: "Math",
@@ -61,6 +62,11 @@ let webstore = new Vue({
             }
         ],
 
+        order: {
+            firstName: "",
+            lastName:""
+        },
+
         cart: [],
 
     },
@@ -69,11 +75,15 @@ let webstore = new Vue({
         cartItemCount: function () {
             return this.cart.length || "";
         },
-
-       
     },
 
     methods: {
+
+        showCheckOut(){
+            this.showProduct = this.showProduct ? false : true;
+            console.log("clicked!");
+        },
+
         addToCart: function (product) {
             this.cart.push(product.id);
             product.spaces--;
