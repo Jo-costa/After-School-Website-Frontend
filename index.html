@@ -15,30 +15,36 @@
     <div id="app">
         <nav>
             <h1 v-text="sitename"></h1>
-            <button class="checkout"><span class="qty">{{cartItemCount}}</span><i class="fa-solid fa-cart-shopping"></i>Checkout</button>
+            <button class="checkout" @click="showCheckOut"><span class="qty">{{cartItemCount}}</span><i
+                    class="fa-solid fa-cart-shopping"></i>Checkout</button>
         </nav>
         <main>
-            <div v-for="product in products" class="row product">
-                <div class="col col-expand">
+            <div class="container" v-if="showProduct">
+                <div v-for="product in products" class="row product">
+                    <div class="col col-expand">
 
-                    <p><strong>Subject: </strong>{{product.subject}}</p>
-                    <p><strong>Location: </strong> {{product.location}}</p>
-                    <p><strong>Price: </strong>{{product.price | formatPrice}}</p>
-                    <p><strong>Spaces available: </strong>{{product.spaces}}</p>
+                        <p><strong>Subject: </strong>{{product.subject}}</p>
+                        <p><strong>Location: </strong> {{product.location}}</p>
+                        <p><strong>Price: </strong>{{product.price | formatPrice}}</p>
+                        <p><strong>Spaces available: </strong>{{product.spaces}}</p>
+                    </div>
+                    <div class="col">
+                        <figure>
+                            <img v-bind:src="product.img" v-bind:alt="product.imgAlt">
+                        </figure>
+
+                    </div>
+
+                    <button class="add-btn" v-on:click="addToCart(product)" v-if="canAddToCart(product)">
+                        Add to Cart
+                    </button>
+                    <button class="disabled" disabled='disabled' v-else>
+                        Add to Cart
+                    </button>
                 </div>
-                <div class="col">
-                    <figure>
-                        <img v-bind:src="product.img" v-bind:alt="product.imgAlt">
-                    </figure>
+            </div>
+            <div v-else>
 
-                </div>
-
-                <button  class="add-btn" v-on:click="addToCart(product)" v-if="canAddToCart(product)">
-                    Add to Cart
-                </button>
-                <button class="disabled" disabled='disabled' v-else>
-                    Add to Cart
-                </button>
             </div>
 
         </main>
