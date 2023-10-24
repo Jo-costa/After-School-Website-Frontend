@@ -60,10 +60,13 @@ main{
 
 .col {
     display: flex;
+    justify-content: end;
     flex-direction: row;
-    /* margin-left: 30px; */
 }
 
+.col img {
+    width: 150px;
+}
 .col-expand{
     display: flex;
     flex-direction: column;
@@ -77,6 +80,7 @@ main{
     font-size: 1.2em;
     border-radius: 20px;
     cursor: pointer;
+    max-width: 150px;
 }
 
 button.checkout{
@@ -116,11 +120,11 @@ button.checkout{
 }
 .fa-cart-shopping{
     padding: 5px;
-    /* font-size: 14px; */
     margin-right: 5px;
 }
 .add-btn:hover, .checkout:hover{
     background-color: rgba(86, 104, 184, 0.929);
+    
 }
 
 .disabled{
@@ -133,9 +137,9 @@ button.checkout{
     opacity:50%;
 }
 
-figure img {
+/* figure img {
     min-width: 100px;
     max-width: 150px;
     border-radius: 10px;
-}
+} */
 
