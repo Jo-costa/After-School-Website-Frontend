@@ -75,13 +75,14 @@ let webstore = new Vue({
         cartItemCount: function () {
             return this.cart.length || "";
         },
+
+        
     },
 
     methods: {
 
         showCheckOut(){
             this.showProduct = this.showProduct ? false : true;
-            console.log("clicked!");
         },
 
         addToCart: function (product) {
