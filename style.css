@@ -98,7 +98,7 @@ button.checkout{
     cursor: pointer;
 }
 
-.checkout-disabled{
+button .checkout-disabled{
     display: flex;
     flex-direction: row;
     justify-content: center;
