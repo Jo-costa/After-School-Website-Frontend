@@ -15,8 +15,10 @@
     <div id="app">
         <nav>
             <h1 v-text="sitename"></h1>
-            <button class="checkout" @click="showCheckOut"><span class="qty">{{cartItemCount}}</span><i
+            <button class="checkout" v-if="cartItemCount > 0" @click="showCheckOut"><span class="qty">{{cartItemCount}}</span><i
                     class="fa-solid fa-cart-shopping"></i>Checkout</button>
+                    <button class="checkout-disabled" disabled="disabled" v-else><i
+                        class="fa-solid fa-cart-shopping"></i>Checkout</button>
         </nav>
         <main>
             <div class="container" v-if="showProduct">

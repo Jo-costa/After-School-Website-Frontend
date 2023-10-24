@@ -43,6 +43,7 @@ main{
     width: 90%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 4fr));
+    justify-content: space-between;
     column-gap: 10px;
     row-gap: 10px;
 }
@@ -51,7 +52,7 @@ main{
     display: grid;
     grid-template-columns: auto 2fr;
     justify-content: space-between;
-    border: solid 2px rgba(34, 33, 33, 0.626);
+    border: solid 2px rgba(0, 0, 0, 0.626);
     max-width: 500px;
     border-radius: 10px;
     padding: 20px;
@@ -60,6 +61,7 @@ main{
 .col {
     display: flex;
     flex-direction: row;
+    /* margin-left: 30px; */
 }
 
 .col-expand{
@@ -90,6 +92,21 @@ button.checkout{
     color: white;
     font-size: 1.2em;
     cursor: pointer;
+}
+
+.checkout-disabled{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    padding:5px;
+    width: 170px;
+    background-color: rgb(86, 104, 184);
+    color: white;
+    font-size: 1.2em;
+    opacity: 50%;
 }
 
 .qty{
