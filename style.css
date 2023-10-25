@@ -36,6 +36,7 @@ main{
     margin: auto;
     width: 100%;
     margin: 50px auto 50px auto;
+    height: 100%;
 }
 
 .container {
@@ -137,9 +138,84 @@ button.checkout{
     opacity:50%;
 }
 
-/* figure img {
-    min-width: 100px;
-    max-width: 150px;
-    border-radius: 10px;
-} */
+.checkout-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    margin-top: 0;
+}
 
+.details-container {
+    width: 60%;
+    margin: auto;
+    height: 70%;
+    background-color: rgb(225, 225, 225);
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.details-container input {
+    min-width: 500px;
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    outline-color:rgb(86, 104, 184) ;
+
+}
+
+
+
+.details-container label {
+
+    margin-left: 2px;
+}
+
+
+.first-name {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.last-name {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.postcode{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.city {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+
+}
+.selectCounttry {
+    display: flex;
+    flex-direction: column;
+    min-width: 509px;
+    height: 30px;
+    margin-bottom: 5px;
+
+}
+
+.country  {
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+    outline-color:rgb(86, 104, 184) ;
+
+}

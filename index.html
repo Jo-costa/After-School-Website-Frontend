@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
     <script src="https://kit.fontawesome.com/b41a748a30.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="./img/logo.png" type="image/x-icon">
     <title>After School Club</title>
 </head>
 
@@ -49,8 +50,37 @@
                     </button>
                 </div>
             </div>
-            <div v-else>
-
+            <div class="checkout-page" v-else>
+                <div class="details-container">
+                    <h2>Enter your details</h2>
+                    <div class="first-name">
+                        <label for="first-name">First Name</label>
+                        <input type="text" name="first_name" placeholder="First name">
+                    </div>
+                    <div class="last-name">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" name="last_name" placeholder="Last name">
+                    </div>
+                    <div class="address">
+                        <label for="address">Address</label>
+                        <input type="text" class="address" name="address" id="address" placeholder="Address">
+                    </div>
+                    <div class="postcode">
+                        <label for="postcode">Post Code</label>
+                        <input type="text" class="postcode" name="postcode" id="postcode" placeholder="Post Code">
+                    </div>
+                    <div class="city">
+                        <label for="city">City</label>
+                        <input type="text" class="city" name="city" id="city" placeholder="City">
+                    </div>
+                    <div class="selectCounttry">
+                        <label for="country">Country</label>
+                        <select class="country" name="country" id="">
+                            <option value="uk">United kingdom</option>
+                        </select>
+                    </div>
+                    </div>
+                </div>
             </div>
 
         </main>
