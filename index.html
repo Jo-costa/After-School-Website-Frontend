@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
     <script src="https://kit.fontawesome.com/b41a748a30.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>After School Club</title>
 </head>
 
@@ -15,10 +15,14 @@
     <div id="app">
         <nav>
             <h1 v-text="sitename"></h1>
-            <button class="checkout" v-if="cartItemCount > 0" @click="showCheckOut"><span class="qty">{{cartItemCount}}</span><i
-                    class="fa-solid fa-cart-shopping"></i>Checkout</button>
-                    <button class="checkout-disabled" disabled="disabled" v-else><i
-                        class="fa-solid fa-cart-shopping"></i>Checkout</button>
+            <button class="checkout" v-if="cartItemCount > 0" @click="showCheckOut"><span class="qty">{{cartItemCount}}</span>
+                <i class="fa-solid fa-cart-shopping"></i>
+                Checkout
+            </button>
+            <button class="checkout-disabled" disabled="disabled" v-else>
+                <i class="fa-solid fa-cart-shopping"></i>
+                Checkout
+            </button>
         </nav>
         <main>
             <div class="container" v-if="showProduct">
