@@ -3,7 +3,7 @@ let webstore = new Vue({
     el: '#app',
     data: {
         sitename: 'After School Club',
-        showProduct: true,
+        showProduct: false,
         products: [{
                 id: 1,
                 subject: "Math",
@@ -64,7 +64,52 @@ let webstore = new Vue({
 
         order: {
             firstName: "",
-            lastName:""
+            lastName:"",
+            address:"",
+            postCode:"",
+            city:"",
+            countries:{
+                AUT:"Austria",
+                BEL:"Belgium",
+                BGR:"Bulgaria",
+                HRV:"Croatia",
+                CYP:"Cyprus",
+                CZE:"Czech Republic",
+                DNK:"Denmark",
+                EST:"Estonia",
+                FIN:"Finland",
+                FRA:"France",
+                DEU:"Germany",
+                GRC:"Greece",
+                HUN:"Hungary",
+                IRL:"Ireland",
+                ITA:"Italy",
+                LVA:"Latvia",
+                LTU:"Lithuania",
+                LUX:"Luxembourg",
+                MLT:"Malta",
+                NLD:"Netherlands",
+                POL:"Poland",
+                PRT:"Portugal",
+                ROU:"Romania",
+                SVK:"Slovakia",
+                SVN:"Slovenia",
+                ESP:"Spain",
+                SWE:"Sweden",
+                GBR:"United Kingdom"
+            },
+
+            states:{
+            AL: 'Alabama',
+            AR: 'Arizona',
+            CA: 'California',
+            NV: 'Nevada',
+            },
+
+            gift:"No",
+            wrapGift: "Yes",
+            noWrap: "No",
+            method:"",
         },
 
         cart: [],

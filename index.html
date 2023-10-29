@@ -16,14 +16,22 @@
     <div id="app">
         <nav>
             <h1 v-text="sitename"></h1>
-            <button class="checkout" v-if="cartItemCount > 0" @click="showCheckOut"><span class="qty">{{cartItemCount}}</span>
+            <button class="checkout" v-if="cartItemCount > 0" @click="showCheckOut">
+                <span class="qty">{{cartItemCount}}</span>
                 <i class="fa-solid fa-cart-shopping"></i>
                 Checkout
             </button>
+            <!-- <button class="checkout" v-if="showProduct == false" @click="showCheckOut">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Product
+            </button> -->
             <button class="checkout-disabled" disabled="disabled" v-else>
+                <span class="qty">{{cartItemCount}}</span>
                 <i class="fa-solid fa-cart-shopping"></i>
                 Checkout
             </button>
+
+
         </nav>
         <main>
             <div class="container" v-if="showProduct">
@@ -52,34 +60,79 @@
             </div>
             <div class="checkout-page" v-else>
                 <div class="details-container">
-                    <h2>Enter your details</h2>
-                    <div class="first-name">
-                        <label for="first-name">First Name</label>
-                        <input type="text" name="first_name" placeholder="First name">
+
+                    <div class="user-details">
+                        <h2>Enter your details</h2>
+                        <div class="first-name-container">
+                            <label for="first-name">First Name</label>
+                            <input type="text" v-model="order.firstName" name="first_name" placeholder="First name">
+                        </div>
+                        <div class="last-name-container">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" v-model="order.lastName" name="last_name" placeholder="Last name">
+                        </div>
+                        <div class="address-container">
+                            <label for="address">Address</label>
+                            <input type="text" v-model="order.address" class="address" name="address" id="address"
+                                placeholder="Address">
+                        </div>
+                        <div class="postcode-container">
+                            <label for="postcode">Post Code</label>
+                            <input type="text" v-model="order.postCode" class="postcode" name="postcode" id="postcode"
+                                placeholder="Post Code">
+                        </div>
+                        <div class="city-container">
+                            <label for="city">City</label>
+                            <input type="text" v-model="order.city" class="city" name="city" id="city"
+                                placeholder="City">
+                        </div>
+                        <div class="selectCountry-container">
+                        
+                            <label for="country">Country</label>
+                            <select v-model="order.country" class="country" name="country" id="country">
+                                <option disabled value="">Country</option>
+                                <option v-for="(country, key) in order.countries" v-bind:value="country">{{ country }}</option>
+                            </select>
+                            
+                        </div>
+
+                        <div class="options">
+                            <div class="gift-container">
+                                <input type="checkbox" class="gift" name="gift" id=""
+                                 v-model="order.gift" v-bind:true-value="order.wrapGift"
+                                  v-bind:false-value="order.noWrap">
+                                <label for="gift">Ship as gift</label>
+                            </div>
+                            <label for="" >Address type</label>
+
+                            <div class="addres-type">
+                                <input type="radio" name="method" id="" value="Home" v-model="order.method">
+                                <label for="">Home</label>
+
+                                <input type="radio" name="method" id="" value="Business" v-model="order.method">
+                                <label for="">Business</label>
+
+                            </div>
+                            <div class="place-order">
+                                <button>Place order</button>
+                            </div>
+
+
+                        </div>
+
                     </div>
-                    <div class="last-name">
-                        <label for="last-name">Last Name</label>
-                        <input type="text" name="last_name" placeholder="Last name">
+
+                    <div class="details-confirmation">
+                        <h5>First Name: {{order.firstName}}</h5>
+                        <h5>Last Name: {{order.lastName}}</h5>
+                        <h5>Address: {{order.address}}</h5>
+                        <h5>Post Code: {{order.postCode}}</h5>
+                        <h5>City: {{order.city}}</h5>
+                        <h5>Country: {{order.country}}</h5>
+                        <h5>Ship as a gift: {{order.gift}}</h5>
+                        <h5>Method: {{order.method}}</h5>
                     </div>
-                    <div class="address">
-                        <label for="address">Address</label>
-                        <input type="text" class="address" name="address" id="address" placeholder="Address">
-                    </div>
-                    <div class="postcode">
-                        <label for="postcode">Post Code</label>
-                        <input type="text" class="postcode" name="postcode" id="postcode" placeholder="Post Code">
-                    </div>
-                    <div class="city">
-                        <label for="city">City</label>
-                        <input type="text" class="city" name="city" id="city" placeholder="City">
-                    </div>
-                    <div class="selectCounttry">
-                        <label for="country">Country</label>
-                        <select class="country" name="country" id="">
-                            <option value="uk">United kingdom</option>
-                        </select>
-                    </div>
-                    </div>
+
                 </div>
             </div>
 
