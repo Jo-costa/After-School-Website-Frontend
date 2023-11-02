@@ -1,66 +1,10 @@
-let webstore = new Vue({
 
+let webstore = new Vue({
     el: '#app',
     data: {
         sitename: 'After School Club',
-        showProduct: false,
-        products: [{
-                id: 1,
-                subject: "Math",
-                location: "London",
-                price: 66,
-                img: "img/math.png",
-                imgAlt: 'Math icon',
-                spaces: 6,
-            },
-            {
-                id: 2,
-                subject: "Book Club",
-                location: "Liverpool",
-                price: 5.99,
-                img: "img/english.png",
-                imgAlt: 'Book icon',
-                spaces: 10
-            },
-            {
-                id: 3,
-                subject: "Dance Club",
-                location: "Boston",
-                price: 66,
-                img: "img/dance.png",
-                imgAlt: 'Dancing icon',
-                spaces: 30,
-
-            },
-            {
-                id: 4,
-                subject: "Chess Club",
-                location: "Lisbon",
-                price: 15,
-                img: "img/chess.png",
-                imgAlt: 'Chess icon',
-                spaces: 5,
-            },
-            {
-                id: 5,
-                subject: "Drama Club",
-                location: "Paris",
-                price: 24.99,
-                img: "img/drama.png",
-                imgAlt: 'Drama icon',
-                spaces: 50
-            },
-            {
-                id: 6,
-                subject: "Art Club",
-                location: "Manchester",
-                price: 34.99,
-                img: "img/art.png",
-                imgAlt: 'Art icon',
-                spaces: 30,
-
-            }
-        ],
+        showProduct: true,
+        products: lessons,
 
         order: {
             firstName: "",
@@ -69,41 +13,120 @@ let webstore = new Vue({
             postCode:"",
             city:"",
             countries:{
-                AUT:"Austria",
-                BEL:"Belgium",
-                BGR:"Bulgaria",
-                HRV:"Croatia",
-                CYP:"Cyprus",
-                CZE:"Czech Republic",
-                DNK:"Denmark",
-                EST:"Estonia",
-                FIN:"Finland",
-                FRA:"France",
-                DEU:"Germany",
-                GRC:"Greece",
-                HUN:"Hungary",
-                IRL:"Ireland",
-                ITA:"Italy",
-                LVA:"Latvia",
-                LTU:"Lithuania",
-                LUX:"Luxembourg",
-                MLT:"Malta",
-                NLD:"Netherlands",
-                POL:"Poland",
-                PRT:"Portugal",
-                ROU:"Romania",
-                SVK:"Slovakia",
-                SVN:"Slovenia",
-                ESP:"Spain",
-                SWE:"Sweden",
-                GBR:"United Kingdom"
-            },
 
-            states:{
-            AL: 'Alabama',
-            AR: 'Arizona',
-            CA: 'California',
-            NV: 'Nevada',
+                "AUT":{
+                    country:"Austria",
+                    code:"+43"
+                },
+                "BEL":{
+                    country:"Belgium",
+                    code:"+32"
+                },
+                
+                "BGR":{
+                    country:"Bulgaria",
+                    code:"+359"
+                },
+                "HRV":{
+                    country:"Croatia",
+                    code:"+385"
+                },
+                "CYP":{
+                    country:"Cyprus",
+                    code:"+357"
+                },
+                "CZE":{
+                    country:"Czech Republic",
+                    code:"+420"
+                },
+                "DNK":{
+                    country:"Denmark",
+                    code:"+45"
+                },
+                "EST":{
+                    country:"Estonia",
+                    code:"+372"
+                },
+                "FIN":{
+                    country:"Finland",
+                    code:"+358"
+                },
+                "FRA":{
+                    country:"France",
+                    code:"+33"
+                },
+                "DEU":{
+                    country:"Germany",
+                    code:"+49"
+                },
+                "GRC":{
+                    country:"Greece",
+                    code:"+30"
+                },
+                "HUN":{
+                    country:"Hungary",
+                    code:"+36"
+                },
+                "IRL":{
+                    country:"Ireland",
+                    code:"+353"
+                },
+                "ITA":{
+                    country:"Italy",
+                    code:"+39"
+                },
+                "LVA":{
+                    country:"Latvia",
+                    code:"+371"
+                },
+                "LTU":{
+                    country:"Lithuania",
+                    code:"+370"
+                },
+                "LUX":{
+                    country:"Luxembourg",
+                    code:"+352"
+                },
+                "MLT":{
+                    country:"Malta",
+                    code:"+356"
+                },
+                "NLD":{
+                    country:"Netherlands",
+                    code:"+31"
+                },
+                "POL":{
+                    country:"Poland",
+                    code:"+48"
+                },
+                "PRT":{
+                    country:"Portugal",
+                    code:"+351"
+                },
+                "ROU":{
+                    country:"Romania",
+                    code:"+40"
+                },
+                "SVK":{
+                    country:"Slovakia",
+                    code:"+421"
+                },
+                "SVN":{
+                    country:"Slovenia",
+                    code:"+386"
+                },
+                "ESP":{
+                    country:"Spain",
+                    code:"+34"
+                },
+                "SWE":{
+                    country:"Sweden",
+                    code:"+46"
+                },
+                "GBR":{
+                    country:"United Kingdom",
+                    code:"+44"
+                }
             },
 
             gift:"No",

@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
     <script src="https://kit.fontawesome.com/b41a748a30.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="lessons.js"></script>
     <link rel="icon" href="./img/logo.png" type="image/x-icon">
     <title>After School Club</title>
 </head>
@@ -87,23 +88,26 @@
                                 placeholder="City">
                         </div>
                         <div class="selectCountry-container">
-                        
+
                             <label for="country">Country</label>
                             <select v-model="order.country" class="country" name="country" id="country">
                                 <option disabled value="">Country</option>
-                                <option v-for="(country, key) in order.countries" v-bind:value="country">{{ country }}</option>
+                                <option v-for="(country, code) in order.countries" v-bind:value="country.country">{{ country.country }}
+                                </option>
                             </select>
-                            
+
                         </div>
 
                         <div class="options">
+
+
+
                             <div class="gift-container">
-                                <input type="checkbox" class="gift" name="gift" id=""
-                                 v-model="order.gift" v-bind:true-value="order.wrapGift"
-                                  v-bind:false-value="order.noWrap">
+                                <input type="checkbox" class="gift" name="gift" id="" v-model="order.gift"
+                                    v-bind:true-value="order.wrapGift" v-bind:false-value="order.noWrap">
                                 <label for="gift">Ship as gift</label>
                             </div>
-                            <label for="" >Address type</label>
+                            <label for="">Address type</label>
 
                             <div class="addres-type">
                                 <input type="radio" name="method" id="" value="Home" v-model="order.method">
@@ -121,8 +125,7 @@
                         </div>
 
                     </div>
-
-                    <div class="details-confirmation">
+                    <div class="customer-info">
                         <h5>First Name: {{order.firstName}}</h5>
                         <h5>Last Name: {{order.lastName}}</h5>
                         <h5>Address: {{order.address}}</h5>
@@ -131,6 +134,25 @@
                         <h5>Country: {{order.country}}</h5>
                         <h5>Ship as a gift: {{order.gift}}</h5>
                         <h5>Method: {{order.method}}</h5>
+                    </div>
+
+                    <div class="details-confirmation">
+                        <div class="basket">
+                            <div class="basket-title">
+                                <h2>Basket</h2>
+                            </div>
+
+                            <div class="item">
+                                <img src="/img/history.png" alt="" srcset="" width="30px" height="30px">
+                                <p class="item-name">History</p>
+                                <button class="item-add"><i class="fa-solid fa-plus"></i></button>
+                                <p class="item-qty">Qty <span>1</span></p>
+                                <button class="item-remove"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            
+
+                        </div>
+                        
                     </div>
 
                 </div>
