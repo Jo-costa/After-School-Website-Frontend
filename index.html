@@ -36,7 +36,27 @@
         </nav>
         <main>
             <div class="container" v-if="showProduct">
-                <div v-for="product in products" class="row product">
+
+                <div class="search-container">
+                    <form class="search">
+                        <input type="text" class="search-field" placeholder="Search" v-model="search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </form>
+
+                </div>
+
+                <div class="sort-container">
+                    <button type="button" onclick="toggleFilters()" class="show-filters-btn">Sort 
+                        <i class="fa-solid fa-angle-right" id="arrow"></i>
+                    </button>
+                    <div id="filters" class="filters">
+                        <span @click="sortBy = 'title'">Title</span>
+                        <span @click="sortBy = 'location'">Location</span>
+                        <span @click="sortBy = 'price'">Price</span>
+                    </div>
+                </div>
+
+                <div v-for="product in searched" class="row product">
                     <div class="col col-expand">
 
                         <p><strong>Subject: </strong>{{product.subject}}</p>
@@ -92,7 +112,8 @@
                             <label for="country">Country</label>
                             <select v-model="order.country" class="country" name="country" id="country">
                                 <option disabled value="">Country</option>
-                                <option v-for="(country, code) in order.countries" v-bind:value="country.country">{{ country.country }}
+                                <option v-for="(country, code) in order.countries" v-bind:value="country.country">
+                                    {{ country.country }}
                                 </option>
                             </select>
 
@@ -142,17 +163,17 @@
                                 <h2>Basket</h2>
                             </div>
 
-                            <div class="item">
-                                <img src="/img/history.png" alt="" srcset="" width="30px" height="30px">
-                                <p class="item-name">History</p>
+                            <div v-for="product in cart" class="item">
+                                <img v-bind:src="product.img" alt="" srcset="" width="30px" height="30px">
+                                <p class="item-name"></p>
                                 <button class="item-add"><i class="fa-solid fa-plus"></i></button>
                                 <p class="item-qty">Qty <span>1</span></p>
                                 <button class="item-remove"><i class="fa-solid fa-trash"></i></button>
                             </div>
-                            
+
 
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -162,6 +183,27 @@
     </div>
 
 
+    <script>
+        function toggleFilters() {
+            document.getElementById('filters').classList.toggle('show');
+            document.getElementById('arrow').classList.toggle('rotate');
+        }
+
+
+
+        window.onclick = function (event) {
+            if (!event.target.matches('.show-filters-btn')) {
+                var dropdowns = document.getElementsByClassName("filters");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 

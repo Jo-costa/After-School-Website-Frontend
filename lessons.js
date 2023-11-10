@@ -1,4 +1,4 @@
-let lessons = [
+let products = [
     {
         id: 1,
         subject: "Math",
@@ -6,7 +6,7 @@ let lessons = [
         price: 66,
         img: "img/math.png",
         imgAlt: 'Math icon',
-        spaces: 6,
+        spaces: 5,
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ let lessons = [
         price: 66,
         img: "img/dance.png",
         imgAlt: 'Dancing icon',
-        spaces: 30,
+        spaces: 5,
 
     },
     {
@@ -43,7 +43,7 @@ let lessons = [
         price: 24.99,
         img: "img/drama.png",
         imgAlt: 'Drama icon',
-        spaces: 50
+        spaces: 5
     },
     {
         id: 6,
@@ -52,7 +52,8 @@ let lessons = [
         price: 34.99,
         img: "img/art.png",
         imgAlt: 'Art icon',
-        spaces: 30,
+        spaces: 5,
 
     }
+
 ]
