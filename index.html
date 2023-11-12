@@ -41,16 +41,7 @@
 
                 </div>
 
-                <div class="sort-container">
-                    <button type="button" @click="toggleFilters" class="show-filters-btn">Sort
-                        <i class="fa-solid fa-angle-right" id="arrow"></i>
-                    </button>
-                    <div id="filters" class="filters">
-                        <button @click="sortBy('subject')">Subject</button>
-                        <button @click="sortBy('location')">Location</button>
-                        <button @click="sortBy('price')">Price</button>
-                    </div>
-                </div>
+               
 
                 <div v-for="product in searched" class="row product">
                     <div class="col col-expand">

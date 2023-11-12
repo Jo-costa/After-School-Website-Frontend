@@ -108,15 +108,6 @@ input::placeholder {
 }
 
 
-.sort-container {
-    position: relative;
-    display: inline-block;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    /* background-color: rgb(224, 218, 218); */
-    padding: 2px 5px;
-}
-
 .sort-container span {
     font-size: 14px;
 }
@@ -138,44 +129,6 @@ input::placeholder {
     display: block;
 }
 
-
-.show-filters-btn {
-
-    background-color: rgb(86, 104, 184);
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-
-}
-
-#arrow {
-    font-size: 10px;
-    padding: 0;
-}
-
-.fa-angle-right {
-    padding: none;
-    
-}
-
-
-.show {
-    display: block;
-    width: 100px;
-}
-
-/* .show span:hover {
-    cursor: default;
-    background-color: rgb(148, 159, 210);
-} */
-
-
-.rotate {
-transform: rotate(90deg);
-display: inline-block;
-/* margin-top: 3px; */
-}
 
 
 .row {
