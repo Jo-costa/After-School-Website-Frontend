@@ -54,6 +54,45 @@ let products = [
         imgAlt: 'Art icon',
         spaces: 5,
 
+    },
+    {
+        id: 7,
+        subject: "Photography",
+        location: "Liverpool",
+        price: 5.99,
+        img: "img/photo.png",
+        imgAlt: 'Camera icon',
+        spaces: 5
+    },
+    {
+        id: 8,
+        subject: "Cooking",
+        location: "Boston",
+        price: 66,
+        img: "img/cooking.png",
+        imgAlt: 'Cooking icon',
+        spaces: 5,
+
+    },
+    {
+        id: 9,
+        subject: "Football Club",
+        location: "Lisbon",
+        price: 15,
+        img: "img/football.png",
+        imgAlt: 'Football icon',
+        spaces: 5,
+    },
+    {
+        id: 10,
+        subject: "Gymnastics Club",
+        location: "Paris",
+        price: 24.99,
+        img: "img/gymnastics.png",
+        imgAlt: 'Gymnastics icon',
+        spaces: 5
     }
+    
+
 
 ]
