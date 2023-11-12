@@ -11,8 +11,6 @@ let webstore = new Vue({
             address: "",
             postCode: "",
             city: "",
-            
-
             gift: "No",
             wrapGift: "Yes",
             noWrap: "No",
@@ -29,8 +27,14 @@ let webstore = new Vue({
     },
 
     computed: {
+
+        // itemsLeft:function(){
+        //     return (product) => product.spaces ;
+        // },
+
         cartItemCount: function () {
-            return this.cart.length || "";
+            console.log(this.cart.length || 0);
+            return this.cart.length || 0;
         },
 
 

@@ -22,12 +22,8 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 Checkout
             </button>
-            <!-- <button class="checkout" v-if="showProduct == false" @click="showCheckOut">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Product
-            </button> -->
+            
             <button class="checkout-disabled" disabled="disabled" v-else>
-                <span class="qty">{{cartItemCount}}</span>
                 <i class="fa-solid fa-cart-shopping"></i>
                 Checkout
             </button>
@@ -45,8 +41,8 @@
 
                 </div>
 
-                <div class="sort-container" >
-                    <button type="button" @click="toggleFilters" class="show-filters-btn">Sort 
+                <div class="sort-container">
+                    <button type="button" @click="toggleFilters" class="show-filters-btn">Sort
                         <i class="fa-solid fa-angle-right" id="arrow"></i>
                     </button>
                     <div id="filters" class="filters">
@@ -71,12 +67,23 @@
 
                     </div>
 
-                    <button class="add-btn" v-on:click="addToCart(product)" v-if="canAddToCart(product)">
-                        Add to Cart
-                    </button>
-                    <button class="disabled" disabled='disabled' v-else>
-                        Add to Cart
-                    </button>
+                    
+                    <div v-if="canAddToCart(product)">
+                        <button class="add-btn" v-on:click="addToCart(product)" >
+                            Add to Cart
+                        </button> <span v-if="product.spaces < 5">Only {{product.spaces}}</span>
+                            <span v-else-if="product.spaces >= 5">Buy Now!</span>
+                            
+                    </div>
+
+                    <div v-else>
+                        <button class="disabled" disabled='disabled' >
+                            Add to Cart
+                        </button>  <span v-if="product.spaces <= 0">Out of Stock</span>
+                    </div>
+                    
+
+
                 </div>
             </div>
             <div class="checkout-page" v-else>
