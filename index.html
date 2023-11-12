@@ -22,7 +22,7 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 Checkout
             </button>
-            
+
             <button class="checkout-disabled" disabled="disabled" v-else>
                 <i class="fa-solid fa-cart-shopping"></i>
                 Checkout
@@ -41,16 +41,6 @@
 
                 </div>
 
-                <div class="sort-container">
-                    <button type="button" @click="toggleFilters" class="show-filters-btn">Sort
-                        <i class="fa-solid fa-angle-right" id="arrow"></i>
-                    </button>
-                    <div id="filters" class="filters">
-                        <button @click="sortBy('subject')">Subject</button>
-                        <button @click="sortBy('location')">Location</button>
-                        <button @click="sortBy('price')">Price</button>
-                    </div>
-                </div>
 
                 <div v-for="product in searched" class="row product">
                     <div class="col col-expand">
@@ -67,21 +57,21 @@
 
                     </div>
 
-                    
+
                     <div v-if="canAddToCart(product)">
-                        <button class="add-btn" v-on:click="addToCart(product)" >
+                        <button class="add-btn" v-on:click="addToCart(product)">
                             Add to Cart
                         </button> <span v-if="product.spaces < 5">Only {{product.spaces}}</span>
-                            <span v-else-if="product.spaces >= 5">Buy Now!</span>
-                            
+                        <span v-else-if="product.spaces >= 5">Buy Now!</span>
+
                     </div>
 
                     <div v-else>
-                        <button class="disabled" disabled='disabled' >
+                        <button class="disabled" disabled='disabled'>
                             Add to Cart
-                        </button>  <span v-if="product.spaces <= 0">Out of Stock</span>
+                        </button> <span v-if="product.spaces <= 0">Out of Stock</span>
                     </div>
-                    
+
 
 
                 </div>
@@ -91,126 +81,110 @@
 
                     <div class="user-details">
                         <h2>Enter your details</h2>
-                        <div class="first-name-container">
-                            <label for="first-name">First Name</label>
-                            <input type="text" v-model="order.firstName" name="first_name" placeholder="First name">
-                        </div>
-                        <div class="last-name-container">
-                            <label for="last-name">Last Name</label>
-                            <input type="text" v-model="order.lastName" name="last_name" placeholder="Last name">
-                        </div>
-                        <div class="address-container">
-                            <label for="address">Address</label>
-                            <input type="text" v-model="order.address" class="address" name="address" id="address"
-                                placeholder="Address">
-                        </div>
-                        <div class="postcode-container">
-                            <label for="postcode">Post Code</label>
-                            <input type="text" v-model="order.postCode" class="postcode" name="postcode" id="postcode"
-                                placeholder="Post Code">
-                        </div>
-                        <div class="city-container">
-                            <label for="city">City</label>
-                            <input type="text" v-model="order.city" class="city" name="city" id="city"
-                                placeholder="City">
-                        </div>
-                        <div class="selectCountry-container">
 
-                            <label for="country">Country</label>
-                            <select v-model="order.country" class="country" name="country" id="country">
-                                <option disabled value="">Country</option>
-                                <option v-for="(country, code) in order.countries" v-bind:value="country.country">
-                                    {{ country.country }}
-                                </option>
-                            </select>
-
-                        </div>
-
-                        <div class="options">
-
-
-
-                            <div class="gift-container">
-                                <input type="checkbox" class="gift" name="gift" id="" v-model="order.gift"
-                                    v-bind:true-value="order.wrapGift" v-bind:false-value="order.noWrap">
-                                <label for="gift">Ship as gift</label>
+    
+                            <div class="first-name-container">
+                                <label for="first-name">First Name</label>
+                                <input type="text" v-model="order.firstName" name="first_name" placeholder="First name">
                             </div>
-                            <label for="">Address type</label>
+                            <div class="last-name-container">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" v-model="order.lastName" name="last_name" placeholder="Last name">
+                            </div>
+                            <div class="address-container">
+                                <label for="address">Address</label>
+                                <input type="text" v-model="order.address" class="address" name="address" id="address"
+                                    placeholder="Address">
+                            </div>
+                            <div class="address-container">
+                                <label for="address">Phone Number</label>
+                                <input type="tel" v-model="order.phone" class="phone" name="phone" id="phone"
+                                    placeholder="Address">
+                            </div>
+                            <div class="postcode-container">
+                                <label for="postcode">Post Code</label>
+                                <input type="text" v-model="order.postCode" class="postcode" name="postcode"
+                                    id="postcode" placeholder="Post Code">
+                            </div>
+                            <div class="city-container">
+                                <label for="city">City</label>
+                                <input type="text" v-model="order.city" class="city" name="city" id="city"
+                                    placeholder="City">
+                            </div>
+                            <div class="selectCountry-container">
 
-                            <div class="addres-type">
-                                <input type="radio" name="method" id="" value="Home" v-model="order.method">
-                                <label for="">Home</label>
-
-                                <input type="radio" name="method" id="" value="Business" v-model="order.method">
-                                <label for="">Business</label>
+                                <label for="country">Country</label>
+                                <select v-model="order.country" class="country" name="country" id="country">
+                                    <option disabled value="">Country</option>
+                                    <option v-for="(country, code) in order.countries" v-bind:value="country.country">
+                                        {{ country.country }}
+                                    </option>
+                                </select>
 
                             </div>
-                            <div class="place-order">
-                                <button>Place order</button>
-                            </div>
 
+                            <div class="options">
 
-                        </div>
+                                <div class="gift-container">
+                                    <input type="checkbox" class="gift" name="gift" id="" v-model="order.gift"
+                                        v-bind:true-value="order.wrapGift" v-bind:false-value="order.noWrap">
+                                    <label for="gift">Ship as gift</label>
+                                </div>
+                                <label for="">Address type</label>
 
-                    </div>
-                    <div class="customer-info">
-                        <h5>First Name: {{order.firstName}}</h5>
-                        <h5>Last Name: {{order.lastName}}</h5>
-                        <h5>Address: {{order.address}}</h5>
-                        <h5>Post Code: {{order.postCode}}</h5>
-                        <h5>City: {{order.city}}</h5>
-                        <h5>Country: {{order.country}}</h5>
-                        <h5>Ship as a gift: {{order.gift}}</h5>
-                        <h5>Method: {{order.method}}</h5>
-                    </div>
+                                <div class="addres-type">
+                                    <input type="radio" name="method" id="" value="Home" v-model="order.method">
+                                    <label for="">Home</label>
 
-                    <div class="details-confirmation">
-                        <div class="basket">
-                            <div class="basket-title">
-                                <h2>Basket</h2>
-                            </div>
+                                    <input type="radio" name="method" id="" value="Business" v-model="order.method">
+                                    <label for="">Business</label>
 
-                            <div v-for="product in cart" class="item">
-                                <img v-bind:src="product.img" alt="" srcset="" width="30px" height="30px">
-                                <p class="item-name"></p>
-                                <button class="item-add"><i class="fa-solid fa-plus"></i></button>
-                                <p class="item-qty">Qty <span>1</span></p>
-                                <button class="item-remove"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-
-
-                        </div>
+                                </div>
+                                <div class="place-order">
+                                    <button type="submit" @click="showAlert" class="place-order-btn" v-if="isValid">Place order</button>
+                                    
+                                    <button type="submit" class="place-order-btn-disabled" v-else disabled="disabled">Place order</button>
+                                </div>
 
                     </div>
 
                 </div>
-            </div>
+                <div class="customer-info">
+                    <h5>First Name: {{order.firstName}}</h5>
+                    <h5>Last Name: {{order.lastName}}</h5>
+                    <h5>Address: {{order.address}}</h5>
+                    <h5>Post Code: {{order.postCode}}</h5>
+                    <h5>City: {{order.city}}</h5>
+                    <h5>Country: {{order.country}}</h5>
+                    <h5>Ship as a gift: {{order.gift}}</h5>
+                    <h5>Method: {{order.method}}</h5>
+                </div>
 
-        </main>
+                <div class="details-confirmation">
+                    <div class="basket">
+                        <div class="basket-title">
+                            <h2>Basket</h2>
+                        </div>
+
+                        <div v-for="product in cart" class="item">
+                            <img v-bind:src="getProdImg(product)" alt="" srcset="" width="30px" height="30px">
+                            <p class="item-name"></p>
+                            <button class="item-add"><i class="fa-solid fa-plus"></i></button>
+                            <p class="item-qty">Qty <span>{{getProdQty(product)}}</span></p>
+                            <button class="item-remove"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
     </div>
 
+    </main>
+    </div>
 
-    <script>
-        function toggleFilters() {
-            document.getElementById('filters').classList.toggle('show');
-            document.getElementById('arrow').classList.toggle('rotate');
-        }
-
-
-
-        window.onclick = function (event) {
-            if (!event.target.matches('.show-filters-btn')) {
-                var dropdowns = document.getElementsByClassName("filters");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 
