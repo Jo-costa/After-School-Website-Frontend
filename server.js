@@ -58,7 +58,7 @@ app.param("collectionName", function (req, res, next, collectionName) {
     });
 });
 
-app.get("/:collectionName", function (req, res) {
+app.get("/collections/:collectionName", function (req, res) {
     req.collection.find({}).toArray(function (error, results) {
         if (error) {
             return next(error);
