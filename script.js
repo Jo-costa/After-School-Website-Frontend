@@ -236,15 +236,25 @@ let webstore = new Vue({
     },
 
     created: function () {
-        fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
+    //     fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
             
-            .then(response => response.json())
-            .then(json => {
-                this.products = json;
+    //         .then(response => response.json())
+    //         .then(json => {
+    //             this.products = json;
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching data:', error);
+    //         });
+    // },
+        fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
+            .then(function(response){
+                response.json().then(
+                    function(json){
+                        webstore.products = json
+                    }
+                )
             })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+           
     },
 
 
