@@ -246,7 +246,7 @@ let webstore = new Vue({
     //             console.error('Error fetching data:', error);
     //         });
     // },
-        fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
+        fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
             .then(function(response){
                 response.json().then(
                     function(json){

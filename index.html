@@ -46,6 +46,8 @@
 
                 <div class="subcontainer">
                     <div v-for="product in products" class="row product">
+
+                        <div class="products-container">
                         <div class="col col-expand">
 
                             <p><strong>Subject: </strong>{{product.subject}}</p>
@@ -59,6 +61,7 @@
                             </figure>
 
                         </div>
+                    </div>
 
 
                         <div v-if="canAddToCart(product)">

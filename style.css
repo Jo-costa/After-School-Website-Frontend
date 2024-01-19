@@ -104,16 +104,6 @@ main{
     
 }
 
-/* .search{
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    border: none;
-    background-color: rgb(148, 159, 210);
-
-} */
 
 .search-field {
     width: 100%;    
@@ -130,13 +120,20 @@ input::placeholder {
 }
 
 .fa-magnifying-glass {
-   color: #fff;
+    color: #fff;
+}
+
+
+.products-container{
+    display: grid;
+    grid-template-columns: auto 2fr;
+
 }
 
 
 .row {
     display: grid;
-    grid-template-columns: auto 2fr;
+    /* grid-template-columns: auto 2fr; */
     justify-content: space-between;
     border: solid 2px rgba(0, 0, 0, 0.626);
     max-width: 500px;
