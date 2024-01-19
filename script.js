@@ -3,7 +3,7 @@ let webstore = new Vue({
     data: {
         sitename: 'After School Club',
         showProduct: true,
-        products: products,
+        products: "",
 
         order: {
             firstName: "",
@@ -237,9 +237,10 @@ let webstore = new Vue({
 
     created: function () {
         fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
+            
             .then(response => response.json())
             .then(json => {
-                webstore.products = json;
+                this.products = json;
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
