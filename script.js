@@ -9,123 +9,123 @@ let webstore = new Vue({
             firstName: "",
             lastName: null,
             address: null,
-            phone:null,
+            phone: null,
             postCode: null,
             city: null,
-            countries:{
+            countries: {
 
-                "AUT":{
-                    country:"Austria",
-                    code:"+43"
+                "AUT": {
+                    country: "Austria",
+                    code: "+43"
                 },
-                "BEL":{
-                    country:"Belgium",
-                    code:"+32"
+                "BEL": {
+                    country: "Belgium",
+                    code: "+32"
                 },
-                
-                "BGR":{
-                    country:"Bulgaria",
-                    code:"+359"
+
+                "BGR": {
+                    country: "Bulgaria",
+                    code: "+359"
                 },
-                "HRV":{
-                    country:"Croatia",
-                    code:"+385"
+                "HRV": {
+                    country: "Croatia",
+                    code: "+385"
                 },
-                "CYP":{
-                    country:"Cyprus",
-                    code:"+357"
+                "CYP": {
+                    country: "Cyprus",
+                    code: "+357"
                 },
-                "CZE":{
-                    country:"Czech Republic",
-                    code:"+420"
+                "CZE": {
+                    country: "Czech Republic",
+                    code: "+420"
                 },
-                "DNK":{
-                    country:"Denmark",
-                    code:"+45"
+                "DNK": {
+                    country: "Denmark",
+                    code: "+45"
                 },
-                "EST":{
-                    country:"Estonia",
-                    code:"+372"
+                "EST": {
+                    country: "Estonia",
+                    code: "+372"
                 },
-                "FIN":{
-                    country:"Finland",
-                    code:"+358"
+                "FIN": {
+                    country: "Finland",
+                    code: "+358"
                 },
-                "FRA":{
-                    country:"France",
-                    code:"+33"
+                "FRA": {
+                    country: "France",
+                    code: "+33"
                 },
-                "DEU":{
-                    country:"Germany",
-                    code:"+49"
+                "DEU": {
+                    country: "Germany",
+                    code: "+49"
                 },
-                "GRC":{
-                    country:"Greece",
-                    code:"+30"
+                "GRC": {
+                    country: "Greece",
+                    code: "+30"
                 },
-                "HUN":{
-                    country:"Hungary",
-                    code:"+36"
+                "HUN": {
+                    country: "Hungary",
+                    code: "+36"
                 },
-                "IRL":{
-                    country:"Ireland",
-                    code:"+353"
+                "IRL": {
+                    country: "Ireland",
+                    code: "+353"
                 },
-                "ITA":{
-                    country:"Italy",
-                    code:"+39"
+                "ITA": {
+                    country: "Italy",
+                    code: "+39"
                 },
-                "LVA":{
-                    country:"Latvia",
-                    code:"+371"
+                "LVA": {
+                    country: "Latvia",
+                    code: "+371"
                 },
-                "LTU":{
-                    country:"Lithuania",
-                    code:"+370"
+                "LTU": {
+                    country: "Lithuania",
+                    code: "+370"
                 },
-                "LUX":{
-                    country:"Luxembourg",
-                    code:"+352"
+                "LUX": {
+                    country: "Luxembourg",
+                    code: "+352"
                 },
-                "MLT":{
-                    country:"Malta",
-                    code:"+356"
+                "MLT": {
+                    country: "Malta",
+                    code: "+356"
                 },
-                "NLD":{
-                    country:"Netherlands",
-                    code:"+31"
+                "NLD": {
+                    country: "Netherlands",
+                    code: "+31"
                 },
-                "POL":{
-                    country:"Poland",
-                    code:"+48"
+                "POL": {
+                    country: "Poland",
+                    code: "+48"
                 },
-                "PRT":{
-                    country:"Portugal",
-                    code:"+351"
+                "PRT": {
+                    country: "Portugal",
+                    code: "+351"
                 },
-                "ROU":{
-                    country:"Romania",
-                    code:"+40"
+                "ROU": {
+                    country: "Romania",
+                    code: "+40"
                 },
-                "SVK":{
-                    country:"Slovakia",
-                    code:"+421"
+                "SVK": {
+                    country: "Slovakia",
+                    code: "+421"
                 },
-                "SVN":{
-                    country:"Slovenia",
-                    code:"+386"
+                "SVN": {
+                    country: "Slovenia",
+                    code: "+386"
                 },
-                "ESP":{
-                    country:"Spain",
-                    code:"+34"
+                "ESP": {
+                    country: "Spain",
+                    code: "+34"
                 },
-                "SWE":{
-                    country:"Sweden",
-                    code:"+46"
+                "SWE": {
+                    country: "Sweden",
+                    code: "+46"
                 },
-                "GBR":{
-                    country:"United Kingdom",
-                    code:"+44"
+                "GBR": {
+                    country: "United Kingdom",
+                    code: "+44"
                 }
             },
             gift: "No",
@@ -137,22 +137,22 @@ let webstore = new Vue({
         cart: [],
 
         search: "",
-        valid:false,//valid if name last name and phone number has been filled
+        valid: false, //valid if name last name and phone number has been filled
 
     },
 
     computed: {
 
-    isValid:function(){
+        isValid: function () {
 
-        if(this.order.firstName !==null && this.order.lastName !== null && this.order.phone !== null){
-            this.valid = true;
-        }else {
-            this.valid =false;
-        }
+            if (this.order.firstName !== null && this.order.lastName !== null && this.order.phone !== null) {
+                this.valid = true;
+            } else {
+                this.valid = false;
+            }
 
-        return this.valid;
-    },
+            return this.valid;
+        },
 
         cartItemCount: function () {
             return this.cart.length || 0;
@@ -170,13 +170,14 @@ let webstore = new Vue({
             return searchProducts;
         },
 
+
     },
 
 
     methods: {
 
 
-        showAlert(){
+        showAlert() {
             alert("Order Placed!");
             window.location.reload();
         },
@@ -232,6 +233,17 @@ let webstore = new Vue({
             return count;
         },
 
+    },
+
+    created: function () {
+        fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
+            .then(response => response.json())
+            .then(json => {
+                webstore.products = json;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     },
 
 
