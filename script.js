@@ -3,10 +3,10 @@ let webstore = new Vue({
     data: {
         sitename: 'After School Club',
         showProduct: true,
-        products: "",
+        products: null,
 
         order: {
-            firstName: "",
+            firstName: null,
             lastName: null,
             address: null,
             phone: null,
@@ -155,7 +155,15 @@ let webstore = new Vue({
         },
 
         cartItemCount: function () {
-            return this.cart.length || 0;
+            let totalQty = 0;
+
+            for(let i = 0; i < this.cart.length; i++){
+                if('qty' in this.cart[i]){
+                    totalQty += this.cart[i].qty;
+                }
+            }
+
+            return totalQty;
         },
 
 
@@ -170,24 +178,67 @@ let webstore = new Vue({
             return searchProducts;
         },
 
+        
+
 
     },
 
 
     methods: {
 
-
-        showAlert() {
-            alert("Order Placed!");
-            window.location.reload();
+        placeOrder() {
+            fetch()
         },
 
         showCheckOut() {
-            this.showProduct = this.showProduct ? false : true;
+                this.showProduct = this.showProduct ? false : true; 
+        },
+        showProductPage() {
+            this.showProduct = this.showProduct ? false : true; 
+        },
+
+        increase:function(product){
+
+            let getItem = this.products.find((element) => element.id == product.id);
+
+            let qty = product.qty;
+
+            console.log(getItem);
+
+            if(getItem.spaces >= qty){
+                product.qty++;
+            }
+            
+
+            
+        },
+
+        decrease: function(product){
+            if(product.qty <=1){
+                this.cart = this.cart.filter(item => !(item.qty === product.qty))  
+            }else{
+                product.qty--;
+            }
+
+        },
+
+        removeAlItems:function(product){
+
+            this.cart = this.cart.filter(item => !(item.id === product.id))
+
         },
 
         addToCart: function (product) {
-            this.cart.push(product.id);
+            const alreadyInCart = this.cart.findIndex(item => item.id === product.id)
+            if(alreadyInCart !== -1){
+                this.cart[alreadyInCart].qty++;
+            }else{
+                this.cart.push({
+                    id: product.id,
+                    qty:1
+                })
+            }
+            
             product.spaces--;
         },
 
@@ -209,13 +260,17 @@ let webstore = new Vue({
 
         getProdID: function (id) {
 
-            let getItem = this.products.find((element) => element.id == id);
+            let getItem = this.products.find((element) => element.id == id.id);
+
+            
+            
             return getItem
         },
 
         getProdImg: function (id) {
 
             let prod = this.getProdID(id);
+
             return prod.img
         },
 
@@ -236,16 +291,6 @@ let webstore = new Vue({
     },
 
     created: function () {
-    //     fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
-            
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             this.products = json;
-    //         })
-    //         .catch(error => {
-    //             console.error('Error fetching data:', error);
-    //         });
-    // },
         fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
             .then(function(response){
                 response.json().then(
@@ -254,7 +299,6 @@ let webstore = new Vue({
                     }
                 )
             })
-           
     },
 
 

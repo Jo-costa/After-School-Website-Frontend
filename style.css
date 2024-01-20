@@ -32,6 +32,18 @@ nav h1 {
     padding: 10px 0 10px 0;
 }
 
+.checkout-container {
+    width: 100%;
+    height: 50px;
+    background-color: red;
+}
+
+.checkout-container1 {
+    width: 100%;
+    height: 50px;
+    background-color: red;
+}
+
 main{
     margin: auto;
     width: 100%;
@@ -125,18 +137,20 @@ input::placeholder {
 
 
 .products-container{
+    width: 100%;
     display: grid;
-    grid-template-columns: auto 2fr;
+    grid-template-columns: auto 3fr;
 
 }
 
 
 .row {
+    width: 90%;
     display: grid;
     /* grid-template-columns: auto 2fr; */
     justify-content: space-between;
     border: solid 2px rgba(0, 0, 0, 0.626);
-    max-width: 500px;
+    /* max-width: 500px; */
     border-radius: 10px;
     padding: 20px;
 }
@@ -240,20 +254,42 @@ button.checkout{
 .checkout-page {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-top: 0;
+}
 
+.return-container {
+
+    width: 90%;
+    padding: 20px;
+}
+
+.go-back{
+
+    background-color: rgb(49, 54, 122);
+    color: #fff;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: left;
 }
 
 .details-container {
     width: 90%;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     background-color: rgb(225, 225, 225);
     padding-bottom: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 50px;
+    padding-top: none;
+    padding: 20px;
 }
 
 .user-details {
@@ -387,13 +423,14 @@ button.checkout{
 
 
 .details-confirmation {
-    width: 30%;
+    min-width: 20%;
 }
 .basket{
     background-color: rgb(254, 254, 254);
     border-radius: 10px;
     margin-top: 50px;
     margin-top: 100px;
+    margin-bottom: 20px;
 }
 
 .basket-title {
@@ -411,7 +448,11 @@ button.checkout{
     flex-direction: row;
     align-items: center;
     padding: 5px;
+    
+}
 
+.item-empty{
+    padding-bottom: 20px;
 }
 
 .item-name {
@@ -421,6 +462,13 @@ button.checkout{
     margin-left: 10px;
 }
 .item-add {
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.item-decrease {
     margin-left: 10px;
     border: none;
     background-color: transparent;

@@ -7,7 +7,6 @@
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
     <script src="https://kit.fontawesome.com/b41a748a30.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- <script src="lessons.js"></script> -->
     <link rel="icon" href="./img/logo.png" type="image/x-icon">
     <title>After School Club</title>
 </head>
@@ -17,11 +16,13 @@
     <div id="app">
         <nav>
             <h1 v-text="sitename"></h1>
+
             <button class="checkout" v-if="cartItemCount > 0" @click="showCheckOut">
                 <span class="qty">{{cartItemCount}}</span>
                 <i class="fa-solid fa-cart-shopping"></i>
                 Checkout
             </button>
+
 
             <button class="checkout-disabled" disabled="disabled" v-else>
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -29,39 +30,40 @@
             </button>
 
 
+
         </nav>
         <main>
             <div class="container" v-if="showProduct">
 
                 <div class="search-main-container">
-                <div class="search-container">
-                    <div class="search">
-                        <input type="text" class="search-field" placeholder="Search" v-model="search">
+                    <div class="search-container">
+                        <div class="search">
+                            <input type="text" class="search-field" placeholder="Search" v-model="search">
+                        </div>
+                        <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+
                     </div>
-                    <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-
-
                 </div>
-            </div>
 
                 <div class="subcontainer">
                     <div v-for="product in products" class="row product">
 
                         <div class="products-container">
-                        <div class="col col-expand">
+                            <div class="col col-expand">
 
-                            <p><strong>Subject: </strong>{{product.subject}}</p>
-                            <p><strong>Location: </strong> {{product.location}}</p>
-                            <p><strong>Price: </strong>{{product.price | formatPrice}}</p>
-                            <p><strong>Spaces available: </strong>{{product.spaces}}</p>
-                        </div>
-                        <div class="col">
-                            <figure>
-                                <img v-bind:src="product.img" v-bind:alt="product.imgAlt">
-                            </figure>
+                                <p><strong>Subject: </strong>{{product.subject}}</p>
+                                <p><strong>Location: </strong> {{product.location}}</p>
+                                <p><strong>Price: </strong>{{product.price | formatPrice}}</p>
+                                <p><strong>Spaces available: </strong>{{product.spaces}}</p>
+                            </div>
+                            <div class="col">
+                                <figure>
+                                    <img v-bind:src="product.img" v-bind:alt="product.imgAlt">
+                                </figure>
 
+                            </div>
                         </div>
-                    </div>
 
 
                         <div v-if="canAddToCart(product)">
@@ -84,78 +86,82 @@
                 </div>
             </div>
             <div class="checkout-page" v-else>
+
+                <div class="return-container">
+                    <button class="go-back" @click="showProductPage"><i class="fa-solid fa-arrow-left"></i></button>
+                </div>
                 <div class="details-container">
 
                     <div class="user-details">
                         <h2>Enter your details</h2>
 
 
-                        <div class="first-name-container">
-                            <label for="first-name">First Name</label>
-                            <input type="text" v-model="order.firstName" name="first_name" placeholder="First name">
-                        </div>
-                        <div class="last-name-container">
-                            <label for="last-name">Last Name</label>
-                            <input type="text" v-model="order.lastName" name="last_name" placeholder="Last name">
-                        </div>
-                        <div class="address-container">
-                            <label for="address">Address</label>
-                            <input type="text" v-model="order.address" class="address" name="address" id="address"
-                                placeholder="Address">
-                        </div>
-                        <div class="address-container">
-                            <label for="address">Phone Number</label>
-                            <input type="tel" v-model="order.phone" class="phone" name="phone" id="phone"
-                                placeholder="Address">
-                        </div>
-                        <div class="postcode-container">
-                            <label for="postcode">Post Code</label>
-                            <input type="text" v-model="order.postCode" class="postcode" name="postcode" id="postcode"
-                                placeholder="Post Code">
-                        </div>
-                        <div class="city-container">
-                            <label for="city">City</label>
-                            <input type="text" v-model="order.city" class="city" name="city" id="city"
-                                placeholder="City">
-                        </div>
-                        <div class="selectCountry-container">
+                        <form class="options">
+                            <div class="first-name-container">
+                                <label for="first-name">First Name</label>
+                                <input type="text" v-model="order.firstName" id="first-name" name="first_name"
+                                    placeholder="First name">
+                            </div>
+                            <div class="last-name-container">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" v-model="order.lastName" id="last-name" name="last_name"
+                                    placeholder="Last name">
+                            </div>
+                            <div class="address-container">
+                                <label for="address">Address</label>
+                                <input type="text" v-model="order.address" class="address" name="address" id="address"
+                                    placeholder="Address">
+                            </div>
+                            <div class="address-container">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" v-model="order.phone" class="phone" name="phone" id="phone"
+                                    placeholder="Phone Number">
+                            </div>
+                            <div class="postcode-container">
+                                <label for="postcode">Post Code</label>
+                                <input type="text" v-model="order.postCode" class="postcode" name="postcode"
+                                    id="postcode" placeholder="Post Code">
+                            </div>
+                            <div class="city-container">
+                                <label for="city">City</label>
+                                <input type="text" v-model="order.city" class="city" name="city" id="city"
+                                    placeholder="City">
+                            </div>
+                            <div class="selectCountry-container">
 
-                            <label for="country">Country</label>
-                            <select v-model="order.country" class="country" name="country" id="country">
-                                <option disabled value="">Country</option>
-                                <option v-for="(country, code) in order.countries" v-bind:value="country.country">
-                                    {{ country.country }}
-                                </option>
-                            </select>
+                                <label for="country">Country</label>
+                                <select v-model="order.country" class="country" name="country" id="country">
+                                    <option disabled value="">Country</option>
+                                    <option v-for="(country, code) in order.countries" v-bind:value="country.country">
+                                        {{ country.country }}
+                                    </option>
+                                </select>
 
-                        </div>
-
-                        <div class="options">
-
+                            </div>
                             <div class="gift-container">
-                                <input type="checkbox" class="gift" name="gift" id="" v-model="order.gift"
+                                <input type="checkbox" class="gift" name="gift" id="gift" v-model="order.gift"
                                     v-bind:true-value="order.wrapGift" v-bind:false-value="order.noWrap">
                                 <label for="gift">Ship as gift</label>
                             </div>
-                            <label for="">Address type</label>
+                            <span>Address type</span>
 
                             <div class="addres-type">
-                                <input type="radio" name="method" id="" value="Home" v-model="order.method">
-                                <label for="">Home</label>
+                                <input type="radio" name="method" id="home-addy" value="Home" v-model="order.method">
+                                <label for="home-addy">Home</label>
 
-                                <input type="radio" name="method" id="" value="Business" v-model="order.method">
-                                <label for="">Business</label>
+                                <input type="radio" name="method" id="business-addy" value="Business"
+                                    v-model="order.method">
+                                <label for="business-addy">Business</label>
 
                             </div>
                             <div class="place-order">
                                 <button type="submit" @click="showAlert" class="place-order-btn" v-if="isValid">Place
                                     order</button>
 
-                                <button type="submit" class="place-order-btn-disabled" v-else disabled="disabled">Place
-                                    order</button>
+                                <button class="place-order-btn-disabled" v-else disabled="disabled">Place order</button>
                             </div>
 
-                        </div>
+                        </form>
 
                     </div>
                     <div class="customer-info">
@@ -169,23 +175,42 @@
                         <h5>Method: {{order.method}}</h5>
                     </div>
 
-                    <div class="details-confirmation">
-                        <div class="basket">
-                            <div class="basket-title">
-                                <h2>Basket</h2>
+                    <div class="details-confirmation" >
+                        <div v-if="cartItemCount > 0">
+                            <div class="basket">
+                                <div class="basket-title">
+                                    <h2>Basket</h2>
+                                </div>
+                                <div class="item" v-for="product in cart">
+                                    <img v-bind:src="getProdImg(product)" alt="" srcset="" width="30px" height="30px">
+                                    <p class="item-name"></p>
+                                    <button class="item-decrease" @click="decrease(product)"><i
+                                        class="fa-solid fa-minus"></i></button>
+                                    <p class="item-qty">Qty <span>{{product.qty}}</span></p>
+                                    <button class="item-add" @click="increase(product)"><i class="fa-solid fa-plus"></i></button>
+
+
+                                    
+                                    <button class="item-remove" @click="removeAlItems(product)"><i class="fa-solid fa-trash"></i></button>
+                                    
+                                </div>
+
+                                
                             </div>
-
-                            <div v-for="product in cart" class="item">
-                                <img v-bind:src="getProdImg(product)" alt="" srcset="" width="30px" height="30px">
-                                <p class="item-name"></p>
-                                <button class="item-add"><i class="fa-solid fa-plus"></i></button>
-                                <p class="item-qty">Qty <span>{{getProdQty(product)}}</span></p>
-                                <button class="item-remove"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-
-
                         </div>
 
+
+                        <div class="details-confirmation" v-else>
+                            <div class="basket">
+                                <div class="basket-title">
+                                    <h2>Basket</h2>
+                                </div>
+                                <div class="item item-empty">
+                                    <span>Cart is empty</span>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>
