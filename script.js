@@ -248,7 +248,8 @@ let webstore = new Vue({
             
             // https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced
     
-                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced`,{
+                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced`,
+                {
                     method:"POST",
                     mode: "cors",
                     headers:{
