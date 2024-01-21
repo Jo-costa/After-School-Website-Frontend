@@ -1,3 +1,4 @@
+
 let webstore = new Vue({
     el: '#app',
     data: {
@@ -205,8 +206,10 @@ let webstore = new Vue({
 
             console.log(getItem);
 
-            if(getItem.spaces >= qty){
+            if(getItem.spaces > 0){
                 product.qty++;
+                getItem.spaces--;
+
             }
             
 
@@ -214,21 +217,36 @@ let webstore = new Vue({
         },
 
         decrease: function(product){
-            if(product.qty <=1){
+            let getItem = this.products.find((element) => element.id == product.id);
+
+            console.log(this.products);
+            console.log(getItem);
+
+            const updateSpaces = this.products.findIndex(element => element.id === product.id)
+        
+            if(product.qty <1){
                 this.cart = this.cart.filter(item => !(item.qty === product.qty))  
             }else{
                 product.qty--;
+                getItem.spaces++;
             }
 
         },
 
         removeAlItems:function(product){
 
+            let getItem = this.products.find((element) => element.id == product.id);
+
             this.cart = this.cart.filter(item => !(item.id === product.id))
+
+            getItem.spaces = 5;
 
         },
 
         addToCart: function (product) {
+            let getItem = this.products.find((element) => element.id == product.id);
+
+
             const alreadyInCart = this.cart.findIndex(item => item.id === product.id)
             if(alreadyInCart !== -1){
                 this.cart[alreadyInCart].qty++;
