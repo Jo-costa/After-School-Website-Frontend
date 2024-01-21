@@ -57,22 +57,20 @@ main{
 .container {
     margin: auto;
     width: 90%;
-    /* display: grid;
-    justify-content: space-between; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
     column-gap: 10px;
     row-gap: 10px;
     justify-content: center;
 }
 
 .subcontainer{
-    width: 90%;
+    width: 100%;
     display: grid;
+    margin-left:auto;
     grid-template-columns: repeat(auto-fill, minmax(400px, 4fr));
-    justify-content: space-between;
-    column-gap: 10px;
     row-gap: 10px;
-    justify-content: center;
-
 }
 
 
@@ -145,13 +143,10 @@ input::placeholder {
 
 
 .row {
-    width: 90%;
-    display: grid;
-    /* grid-template-columns: auto 2fr; */
-    justify-content: space-between;
-    border: solid 2px rgba(0, 0, 0, 0.626);
-    /* max-width: 500px; */
     border-radius: 10px;
+    border: solid 2px rgba(0, 0, 0, 0.626);
+    width: 90%;
+    justify-content: space-between;
     padding: 20px;
 }
 
@@ -167,6 +162,10 @@ input::placeholder {
 .col-expand{
     display: flex;
     flex-direction: column;
+}
+
+.add-btn-container{
+    margin-top: 10px;
 }
 
 .add-btn{

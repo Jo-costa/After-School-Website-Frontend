@@ -66,10 +66,10 @@
                         </div>
 
 
-                        <div v-if="canAddToCart(product)">
+                        <div class="add-btn-container" v-if="canAddToCart(product)">
                             <button class="add-btn" v-on:click="addToCart(product)">
                                 Add to Cart
-                            </button> <span v-if="product.spaces < 5">Only {{product.spaces}}</span>
+                            </button> <span v-if="product.spaces < 5">Only {{product.spaces}} left</span>
                             <span v-else-if="product.spaces >= 5">Buy Now!</span>
 
                         </div>
@@ -81,7 +81,7 @@
                         </div>
 
 
-
+Fplace
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                         <form class="options" name="user-data">
                             <div class="first-name-container">
                                 <label for="first-name">First Name</label>
-                                <input type="text" v-model="order.firstName" id="first-name" name="first_name"
+                                <input type="text" v-model="userDetailsForm.firstName" id="first-name" name="first_name"
                                     placeholder="First name">
                             </div>
                             <div class="last-name-container">
@@ -155,7 +155,7 @@
 
                             </div>
                             <div class="place-order">
-                                <button type="submit" @click="placeOrder" class="place-order-btn" v-if="isValid">
+                                <button type="submit" @click.prevent="placeOrder" class="place-order-btn" v-if="isValid">
                                     Place
                                     order</button>
 
@@ -183,18 +183,22 @@
                                     <h2>Basket</h2>
                                 </div>
                                 <div class="item" v-for="product in cart">
-                                    {{cart}}
+                                        
                                     <div class="product-info">
                                         <img v-bind:src="getProdImg(product)" alt="" srcset="" width="20px" height="20px">
                                         <p class="item-name">{{product.subject}}</p>
                                     </div>
                                     <form action="" name="item-id">
-                                        <input type="hidden" v-model="product.id">
+                                        <input type="hidden" :value="product.id" >
+                                        <input type="hidden" :value="product.qty">
+                                        <!-- <input type="hidden" v-model="basketForm[0].itemsInfo.numSpaces" :value="product.qty"> -->
+                                        
+
                                     </form>
                                     <div class="qty-management">
                                         <button class="item-decrease" @click="decrease(product)"><i
                                                 class="fa-solid fa-minus"></i></button>
-                                        <p class="item-qty">Qty <span>{{product.qty}}</span></p>
+                                        <p class="item-qty" >Qty <span>{{product.qty}}</span></p>
                                         <button class="item-add" @click="increase(product)"><i
                                                 class="fa-solid fa-plus"></i></button>
                                         <button class="item-remove" @click="removeAlItems(product)"><i

@@ -5,6 +5,13 @@ let webstore = new Vue({
         sitename: 'After School Club',
         showProduct: true,
         products: null,
+        userDetailsForm:{
+            firstName:this.order ? this.order.firstName : "",
+            // lastName:this.order ? this.order.lastName : "",
+            // phoneNumber:this.order ? this.order.phone : "",
+
+        },
+        basketForm: [],
 
         order: {
             firstName: null,
@@ -144,10 +151,13 @@ let webstore = new Vue({
 
     computed: {
 
-        isValid: function () {
+        
 
-            if (this.order.firstName !== null && this.order.lastName !== null && this.order.phone !== null) {
+        isValid: function () {
+            // this.order.firstName !== null && this.order.lastName !== null && this.order.phone !== null &&
+            if ( this.cart.length > 0) {
                 this.valid = true;
+
             } else {
                 this.valid = false;
             }
@@ -187,9 +197,78 @@ let webstore = new Vue({
 
     methods: {
 
-        placeOrder() {
-            fetch()
+
+        updateBasketInfo(){
+
+            this.cart.forEach((element) => {
+
+
+                this.basketForm.push({
+                    itemsInfo: {
+                        id: element.id,
+                        numSpaces: element.qty
+                    }
+                })
+            })
+
+
+            
         },
+        placeOrder() {
+
+            this.updateBasketInfo()
+
+            this.basketForm.itemsInfo
+
+            const userData = [];
+            const basketData = [];
+        
+            for (const key in this.userDetailsForm) {
+                userData[key] = this.userDetailsForm[key];
+            }
+        
+            this.basketForm.forEach((item) => {
+                const lessonID = item.itemsInfo.id;
+                const numSpaces = item.itemsInfo.numSpaces;
+        
+                basketData.push({
+                    id: lessonID,
+                    numSpaces: numSpaces})
+            });
+        
+            const combineData = {
+                userData,
+                basketData
+            };
+        
+            this.cart.forEach((element) => {
+                console.log(element.id);
+            })
+            console.log(JSON.stringify(combineData));
+            
+            // https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced
+    
+                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced`,{
+                    method:"POST",
+                    mode: "cors",
+                    headers:{
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+    
+                    body:JSON.stringify({
+                        combineData
+                    })
+                })
+                .then((response) => response.json())
+                .then(data =>
+                {
+                    console.log(response.json());
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                })
+            },
 
         showCheckOut() {
                 this.showProduct = this.showProduct ? false : true; 
