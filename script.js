@@ -261,9 +261,8 @@ let webstore = new Vue({
                     })
                 })
                 .then((response) => response.json())
-                .then(data =>
-                {
-                    console.log(response.json());
+                .then(data =>{
+                    console.log(data);
                 })
                 .catch(error => {
                     console.error("Error:", error);
