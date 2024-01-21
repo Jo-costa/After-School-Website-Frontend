@@ -243,6 +243,23 @@ let webstore = new Vue({
 
         },
 
+
+        removeAllItemsFromCart:function(cart){
+
+            const deleteAll = cart.map(item => item.id);
+            
+            cart.splice(0, cart.length)
+
+            this.products.forEach(item=>{
+                if(deleteAll.includes(item.id))
+                item.spaces = 5;
+            })
+
+            
+
+            
+        },
+
         addToCart: function (product) {
             let getItem = this.products.find((element) => element.id == product.id);
 
@@ -253,7 +270,8 @@ let webstore = new Vue({
             }else{
                 this.cart.push({
                     id: product.id,
-                    qty:1
+                    qty:1,
+                    subject:product.subject
                 })
             }
             

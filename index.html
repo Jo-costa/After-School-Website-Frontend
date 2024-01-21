@@ -96,7 +96,7 @@
                         <h2>Enter your details</h2>
 
 
-                        <form class="options">
+                        <form class="options" name="user-data">
                             <div class="first-name-container">
                                 <label for="first-name">First Name</label>
                                 <input type="text" v-model="order.firstName" id="first-name" name="first_name"
@@ -155,7 +155,8 @@
 
                             </div>
                             <div class="place-order">
-                                <button type="submit" @click="showAlert" class="place-order-btn" v-if="isValid">Place
+                                <button type="submit" @click="placeOrder" class="place-order-btn" v-if="isValid">
+                                    Place
                                     order</button>
 
                                 <button class="place-order-btn-disabled" v-else disabled="disabled">Place order</button>
@@ -175,27 +176,33 @@
                         <h5>Method: {{order.method}}</h5>
                     </div>
 
-                    <div class="details-confirmation" >
+                    <div class="details-confirmation">
                         <div v-if="cartItemCount > 0">
                             <div class="basket">
                                 <div class="basket-title">
                                     <h2>Basket</h2>
                                 </div>
                                 <div class="item" v-for="product in cart">
-                                    <img v-bind:src="getProdImg(product)" alt="" srcset="" width="30px" height="30px">
-                                    <p class="item-name"></p>
-                                    <button class="item-decrease" @click="decrease(product)"><i
-                                        class="fa-solid fa-minus"></i></button>
-                                    <p class="item-qty">Qty <span>{{product.qty}}</span></p>
-                                    <button class="item-add" @click="increase(product)"><i class="fa-solid fa-plus"></i></button>
-
-
-                                    
-                                    <button class="item-remove" @click="removeAlItems(product)"><i class="fa-solid fa-trash"></i></button>
-                                    
+                                    {{cart}}
+                                    <div class="product-info">
+                                        <img v-bind:src="getProdImg(product)" alt="" srcset="" width="20px" height="20px">
+                                        <p class="item-name">{{product.subject}}</p>
+                                    </div>
+                                    <form action="" name="item-id">
+                                        <input type="hidden" v-model="product.id">
+                                    </form>
+                                    <div class="qty-management">
+                                        <button class="item-decrease" @click="decrease(product)"><i
+                                                class="fa-solid fa-minus"></i></button>
+                                        <p class="item-qty">Qty <span>{{product.qty}}</span></p>
+                                        <button class="item-add" @click="increase(product)"><i
+                                                class="fa-solid fa-plus"></i></button>
+                                        <button class="item-remove" @click="removeAlItems(product)"><i
+                                                class="fa-solid fa-trash"></i></button>
+                                    </div>
                                 </div>
 
-                                
+                                <button class="removeAllbtn" @click="removeAllItemsFromCart(cart)">Remove all</button>
                             </div>
                         </div>
 
