@@ -5,14 +5,6 @@ let webstore = new Vue({
         sitename: 'After School Club',
         showProduct: true,
         products: null,
-        userDetailsForm:{
-            firstName:this.order ? this.order.firstName : "",
-            // lastName:this.order ? this.order.lastName : "",
-            // phoneNumber:this.order ? this.order.phone : "",
-
-        },
-        basketForm: [],
-
         order: {
             firstName: null,
             lastName: null,
@@ -143,6 +135,13 @@ let webstore = new Vue({
         },
 
         cart: [],
+        userDetailsForm:[
+            // firstName:this.order ? this.order.firstName : "",
+            // lastName:this.order ? this.order.lastName : "",
+            // phoneNumber:this.order ? this.order.phone : "",
+
+        ],
+        basketForm: [],
 
         search: "",
         valid: false, //valid if name last name and phone number has been filled
@@ -155,6 +154,11 @@ let webstore = new Vue({
 
         isValid: function () {
             // 
+            // console.log("First Name:", this.order.firstName);
+            // console.log("Last Name:", this.order.lastName);
+            // console.log("Phone:", this.order.phone);
+            // console.log("Cart Length:", this.cart.length);
+
             if (this.order.firstName !== null && this.order.lastName !== null && this.order.phone !== null && this.cart.length > 0) {
                 this.valid = true;
 
@@ -218,8 +222,14 @@ let webstore = new Vue({
 
             this.updateBasketInfo()
 
-            this.basketForm.itemsInfo
+            // this.basketForm.itemsInfo
+            this.userDetailsForm.push({
+                firstName:this.order.firstName,
+                lastName:this.order.lastName,
+                phone:this.order.phone,
+            })
 
+        
             const userData = [];
             const basketData = [];
         
@@ -227,10 +237,11 @@ let webstore = new Vue({
                 userData[key] = this.userDetailsForm[key];
             }
         
+        
             this.basketForm.forEach((item) => {
                 const lessonID = item.itemsInfo.id;
                 const numSpaces = item.itemsInfo.numSpaces;
-        
+                
                 basketData.push({
                     id: lessonID,
                     numSpaces: numSpaces})
@@ -241,9 +252,7 @@ let webstore = new Vue({
                 basketData
             };
         
-            this.cart.forEach((element) => {
-                console.log(element.id);
-            })
+            
             console.log(JSON.stringify(combineData));
             
             // https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced
