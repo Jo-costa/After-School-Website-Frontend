@@ -154,8 +154,8 @@ let webstore = new Vue({
         
 
         isValid: function () {
-            // this.order.firstName !== null && this.order.lastName !== null && this.order.phone !== null &&
-            if ( this.cart.length > 0) {
+            // 
+            if (this.order.firstName !== null && this.order.lastName !== null && this.order.phone !== null && this.cart.length > 0) {
                 this.valid = true;
 
             } else {
