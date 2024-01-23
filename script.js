@@ -226,7 +226,9 @@ let webstore = new Vue({
 
         
             const basketData = [];
+            const updateSpacesArray = []
 
+            console.log(JSON.stringify(this.basketForm));
             //iterate basketForm array that contains info about (id, spaces and item-inventory)
             this.basketForm.forEach((item) => {
                 const lessonID = item.itemsInfo.id;
@@ -237,10 +239,17 @@ let webstore = new Vue({
                 basketData.push({
                     productID: lessonID,
                     numSpaces: numSpaces,
+
+                })
+
+                updateSpacesArray.push({
+                    productID: lessonID,
                     updateInv: updateSpaces,
 
                 })
             });
+
+            console.log(JSON.stringify(updateSpacesArray));
         
             //array to hold all the info to be sent to the server
             const orderInfo = {
@@ -249,7 +258,10 @@ let webstore = new Vue({
                 basketData
             };
 
-                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/orders/orderPLaced`,
+            
+            
+
+                fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com//collections/orders/orderPlaced`,
                 {
                     method:"POST",
                     
@@ -266,7 +278,7 @@ let webstore = new Vue({
                 .then(data =>{
                     console.log(data);
 
-                    fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`, {
+                    fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com//collections/products`, {
 
                         method:"PUT",
                         headers:{
@@ -275,7 +287,7 @@ let webstore = new Vue({
                         },
 
                         body: JSON.stringify({
-                            orderInfo
+                            updateSpacesArray
                         })
                     })
                     .then((response)=> response.json())
