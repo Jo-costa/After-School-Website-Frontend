@@ -148,13 +148,8 @@ let webstore = new Vue({
         
 
         isValid: function () {
-            // 
-            // console.log("First Name:", this.order.firstName);
-            // console.log("Last Name:", this.order.lastName);
-            // console.log("Phone:", this.order.phone);
-            // console.log("Cart Length:", this.cart.length);
 
-            if (this.order.firstName !== null && this.order.lastName !== null && this.order.phone !== null && this.cart.length > 0) {
+            if ((this.order.firstName && this.order.phone !== null) && this.cart.length > 0) {
                 this.valid = true;
 
             } else {
@@ -199,9 +194,11 @@ let webstore = new Vue({
 
         updateBasketInfo(){
 
+            //iterate cart array retreive each item 
             this.cart.forEach((element) => {
 
 
+                //store retreived item in the array
                 this.basketForm.push({
                     itemsInfo: {
                         id: element.id,
@@ -216,28 +213,27 @@ let webstore = new Vue({
         },
         placeOrder() {
 
+            //fucntion call to insert items(id, spaces and item-inventory) in the cart array to basketForm array
             this.updateBasketInfo()
 
-            // this.basketForm.itemsInfo
+
+
+            //retrieve user details and insert into the userDetailsForm array
             this.userDetailsForm.push({
                 firstName:this.order.firstName,
-                lastName:this.order.lastName,
                 phone:this.order.phone,
             })
 
         
             const basketData = [];
-        
-            // for (const key in this.userDetailsForm) {
-            //     userData[key] = this.userDetailsForm[key];
-            // }
-        
-        
+
+            //iterate basketForm array that contains info about (id, spaces and item-inventory)
             this.basketForm.forEach((item) => {
                 const lessonID = item.itemsInfo.id;
                 const numSpaces = item.itemsInfo.numSpaces;
                 const updateSpaces = item.itemsInfo.updateInventory - numSpaces;
                 
+                //insert retrieved data into the basketData array
                 basketData.push({
                     productID: lessonID,
                     numSpaces: numSpaces,
@@ -246,13 +242,12 @@ let webstore = new Vue({
                 })
             });
         
+            //array to hold all the info to be sent to the server
             const orderInfo = {
                 firstName: this.userDetailsForm[0].firstName,
-                lastName: this.userDetailsForm[0].lastName,
                 phone: this.userDetailsForm[0].phone,
                 basketData
             };
-            // https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced
 
                 fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/orders/orderPLaced`,
                 {
@@ -286,9 +281,9 @@ let webstore = new Vue({
                     .then((response)=> response.json())
                     .then(data => {
                         console.log(data);
-                    })
+                    })//end of fetch PUT
 
-                    alert(data)
+                    alert(data.msg)
                     location.reload()
                     
                 })
@@ -298,7 +293,6 @@ let webstore = new Vue({
 
 
 
-                fetch(``)
 
             },
 
@@ -311,29 +305,27 @@ let webstore = new Vue({
 
         increase:function(product){
 
+            //find the product in the products array
             let getItem = this.products.find((element) => element.id == product.id);
 
-            let qty = product.qty;
-
+            //check if the found product spaces is greater than 0
             if(getItem.spaces > 0){
                 product.qty++;
                 getItem.spaces--;
 
             }
-            
-
-            
         },
 
         decrease: function(product){
+            //find the product in the products array
             let getItem = this.products.find((element) => element.id == product.id);
-
-           
-
-            const updateSpaces = this.products.findIndex(element => element.id === product.id)
         
-            if(product.qty <1){
-                this.cart = this.cart.filter(item => !(item.qty === product.qty))  
+            if(product.qty <=1){
+
+                //check if each item in the cart array is not equal to the id of the product
+                //to be deleted... create a new array without the deleted item and assign to cart array
+                this.cart = this.cart.filter(item => !(item.id === product.id))
+                getItem.spaces++;
             }else{
                 product.qty--;
                 getItem.spaces++;

@@ -88,89 +88,50 @@
                 <div class="return-container">
                     <button class="go-back" @click="showProductPage"><i class="fa-solid fa-arrow-left"></i></button>
                 </div>
-                <div class="details-container">
 
-                    <div class="user-details">
-                        <h2>Enter your details</h2>
+                <div class="user-info-baskt-info-container">
+                    <div class="details-container">
+
+                        <div class="user-details">
+                            <h2>Enter your details</h2>
 
 
-                        <form class="options" name="user-data">
-                            <div class="first-name-container">
-                                <label for="first-name">First Name</label>
-                                <input type="text" v-model="order.firstName" id="first-name" name="first_name"
-                                    placeholder="First name">
-                            </div>
-                            <div class="last-name-container">
-                                <label for="last-name">Last Name</label>
-                                <input type="text" v-model="order.lastName" id="last-name" name="last_name"
-                                    placeholder="Last name">
-                            </div>
-                            <div class="address-container">
-                                <label for="address">Address</label>
-                                <input type="text" v-model="order.address" class="address" name="address" id="address"
-                                    placeholder="Address">
-                            </div>
-                            <div class="address-container">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" v-model="order.phone" class="phone" name="phone" id="phone"
-                                    placeholder="Phone Number">
-                            </div>
-                            <div class="postcode-container">
-                                <label for="postcode">Post Code</label>
-                                <input type="text" v-model="order.postCode" class="postcode" name="postcode"
-                                    id="postcode" placeholder="Post Code">
-                            </div>
-                            <div class="city-container">
-                                <label for="city">City</label>
-                                <input type="text" v-model="order.city" class="city" name="city" id="city"
-                                    placeholder="City">
-                            </div>
-                            <div class="selectCountry-container">
+                            <form class="options" name="user-data">
+                                <div class="first-name-container">
+                                    <label for="first-name">Name</label>
+                                    <input type="text" v-model="order.firstName" id="first-name" name="first_name"
+                                        placeholder="First name">
+                                </div>
 
-                                <label for="country">Country</label>
-                                <select v-model="order.country" class="country" name="country" id="country">
-                                    <option disabled value="">Country</option>
-                                    <option v-for="(country, code) in order.countries" v-bind:value="country.country">
-                                        {{ country.country }}
-                                    </option>
-                                </select>
 
-                            </div>
-                            <div class="gift-container">
-                                <input type="checkbox" class="gift" name="gift" id="gift" v-model="order.gift"
-                                    v-bind:true-value="order.wrapGift" v-bind:false-value="order.noWrap">
-                                <label for="gift">Ship as gift</label>
-                            </div>
-                            <span>Address type</span>
+                                <div class="address-container">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" v-model="order.phone" class="phone" name="phone" id="phone"
+                                        placeholder="Phone Number">
+                                </div>
 
-                            <div class="addres-type">
-                                <input type="radio" name="method" id="home-addy" value="Home" v-model="order.method">
-                                <label for="home-addy">Home</label>
 
-                                <input type="radio" name="method" id="business-addy" value="Business"
-                                    v-model="order.method">
-                                <label for="business-addy">Business</label>
 
-                            </div>
-                            <div class="place-order">
-                                <button type="submit" @click.prevent="placeOrder" class="place-order-btn" v-if="isValid">
-                                    Place order</button>
+                                <div class="place-order">
+                                    <button type="submit" @click.prevent="placeOrder" class="place-order-btn"
+                                        v-if="isValid">
+                                        Place order</button>
 
-                                <button class="place-order-btn-disabled" v-else disabled="disabled">Place order</button>
-                            </div>
+                                    <button class="place-order-btn-disabled" v-else disabled="disabled">Place
+                                        order</button>
+                                </div>
 
-                        </form>
+                            </form>
 
-                    </div>
-                    <div class="customer-info">
-                        <h5>First Name: {{order.firstName}}</h5>
-                        <h5>Last Name: {{order.lastName}}</h5>
-                        <h5>Address: {{order.address}}</h5>
-                        <h5>Post Code: {{order.postCode}}</h5>
-                        <h5>City: {{order.city}}</h5>
-                        <h5>Country: {{order.country}}</h5>
-                        <h5>Ship as a gift: {{order.gift}}</h5>
-                        <h5>Method: {{order.method}}</h5>
+                        </div>
+                        <div class="customer-info">
+                            <h5>Name: {{order.firstName}}</h5>
+                            <h5>Phone: {{order.phone}}</h5>
+
+                        </div>
+
+
+
                     </div>
 
                     <div class="details-confirmation">
@@ -180,22 +141,23 @@
                                     <h2>Basket</h2>
                                 </div>
                                 <div class="item" v-for="product in cart">
-                                        
+
                                     <div class="product-info">
-                                        <img v-bind:src="getProdImg(product)" alt="" srcset="" width="20px" height="20px">
+                                        <img v-bind:src="getProdImg(product)" alt="" srcset="" width="40px"
+                                            height="40px">
                                         <p class="item-name">{{product.subject}}</p>
                                     </div>
                                     <form action="" name="item-id">
                                         <!-- <input type="hidden" :value="product.id" >
-                                        <input type="hidden" :value="product.qty"> -->
+                                    <input type="hidden" :value="product.qty"> -->
                                         <!-- <input type="hidden" v-model="basketForm[0].itemsInfo.numSpaces" :value="product.qty"> -->
-                                        
+
 
                                     </form>
                                     <div class="qty-management">
                                         <button class="item-decrease" @click="decrease(product)"><i
                                                 class="fa-solid fa-minus"></i></button>
-                                        <p class="item-qty" >Qty <span>{{product.qty}}</span></p>
+                                        <p class="item-qty">Qty <span>{{product.qty}}</span></p>
                                         <button class="item-add" @click="increase(product)"><i
                                                 class="fa-solid fa-plus"></i></button>
                                         <button class="item-remove" @click="removeAlItems(product)"><i
@@ -220,7 +182,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

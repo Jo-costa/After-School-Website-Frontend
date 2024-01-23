@@ -279,9 +279,16 @@ button.checkout{
     justify-content: left;
 }
 
-.details-container {
+.user-info-baskt-info-container {
     width: 90%;
-    /* margin-top: 100px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details-container {
+    width: 60%;
+    max-height: 350px;
     background-color: rgb(225, 225, 225);
     padding-bottom: 100px;
     display: flex;
@@ -293,10 +300,11 @@ button.checkout{
 
 .user-details {
     margin-top: 10px;
-    width: 300px;
+    width: 40%;
     background-color: rgb(225, 225, 225);
 
 }
+
 
 .details-container input {
     height: 25px;
@@ -349,13 +357,7 @@ button.checkout{
     width: 250px;
 }
 
-.city-container {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    margin-bottom: 5px;
-    width: 500px;
-}
+
 
 .city {
     width: 250px;
@@ -385,8 +387,6 @@ button.checkout{
 .options {
     display: flex;
     flex-direction: column;
-
-    width: 500px;
     margin-top: 10px;
 }
 
@@ -405,9 +405,11 @@ button.checkout{
 }
 
 .place-order {
-    width: 100%;
+
+    margin-top: 10px;
+    max-width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .place-order-btn  {
@@ -425,10 +427,8 @@ button.checkout{
     min-width: 30%;
 }
 .basket{
-    background-color: rgb(254, 254, 254);
+    background-color: rgb(225, 225, 225);
     border-radius: 10px;
-    margin-top: 50px;
-    margin-top: 100px;
     margin-bottom: 20px;
 }
 
@@ -515,7 +515,7 @@ button.checkout{
     padding: 10px;
     border-radius: 10px;
     margin-top: 100px;
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 400px;
+    
+    width: 40%;
+    max-height: 150px;
 }
