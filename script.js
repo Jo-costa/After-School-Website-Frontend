@@ -264,12 +264,19 @@ let webstore = new Vue({
                 })
                 .then((response) => response.json())
                 .then(data =>{
+                    console.log(data);
                     alert(data)
-                    location.reload()
+                    // location.reload()
+                    
                 })
                 .catch(error => {
                     console.error("Error:", error);
                 })
+
+
+
+                fetch(``)
+
             },
 
         showCheckOut() {
