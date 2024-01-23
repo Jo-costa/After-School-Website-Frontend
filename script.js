@@ -265,6 +265,7 @@ let webstore = new Vue({
                 .then((response) => response.json())
                 .then(data =>{
                     alert(data)
+                    location.reload()
                 })
                 .catch(error => {
                     console.error("Error:", error);
@@ -283,7 +284,7 @@ let webstore = new Vue({
             let getItem = this.products.find((element) => element.id == product.id);
 
             let qty = product.qty;
-            
+
             if(getItem.spaces > 0){
                 product.qty++;
                 getItem.spaces--;
