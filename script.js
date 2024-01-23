@@ -135,12 +135,7 @@ let webstore = new Vue({
         },
 
         cart: [],
-        userDetailsForm:[
-            // firstName:this.order ? this.order.firstName : "",
-            // lastName:this.order ? this.order.lastName : "",
-            // phoneNumber:this.order ? this.order.phone : "",
-
-        ],
+        userDetailsForm:[],
         basketForm: [],
 
         search: "",
@@ -230,12 +225,11 @@ let webstore = new Vue({
             })
 
         
-            const userData = [];
             const basketData = [];
         
-            for (const key in this.userDetailsForm) {
-                userData[key] = this.userDetailsForm[key];
-            }
+            // for (const key in this.userDetailsForm) {
+            //     userData[key] = this.userDetailsForm[key];
+            // }
         
         
             this.basketForm.forEach((item) => {
@@ -243,36 +237,34 @@ let webstore = new Vue({
                 const numSpaces = item.itemsInfo.numSpaces;
                 
                 basketData.push({
-                    id: lessonID,
+                    productID: lessonID,
                     numSpaces: numSpaces})
             });
         
-            const combineData = {
-                userData,
+            const orderInfo = {
+                firstName: this.userDetailsForm[0].firstName,
+                lastName: this.userDetailsForm[0].lastName,
+                phone: this.userDetailsForm[0].phone,
                 basketData
             };
-        
-            
-            console.log(JSON.stringify(combineData));
-            
             // https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced
-    
-                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products/orderPlaced`,
+
+                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/orders/orderPLaced`,
                 {
                     method:"POST",
-                    mode: "cors",
+                    
                     headers:{
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
     
                     body:JSON.stringify({
-                        combineData
+                        orderInfo
                     })
                 })
                 .then((response) => response.json())
                 .then(data =>{
-                    console.log(data);
+                    alert(data)
                 })
                 .catch(error => {
                     console.error("Error:", error);
@@ -291,9 +283,7 @@ let webstore = new Vue({
             let getItem = this.products.find((element) => element.id == product.id);
 
             let qty = product.qty;
-
-            console.log(getItem);
-
+            
             if(getItem.spaces > 0){
                 product.qty++;
                 getItem.spaces--;
@@ -307,8 +297,7 @@ let webstore = new Vue({
         decrease: function(product){
             let getItem = this.products.find((element) => element.id == product.id);
 
-            console.log(this.products);
-            console.log(getItem);
+           
 
             const updateSpaces = this.products.findIndex(element => element.id === product.id)
         
