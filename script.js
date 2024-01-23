@@ -271,7 +271,7 @@ let webstore = new Vue({
                 .then(data =>{
                     console.log(data);
 
-                    fetch(`http://localhost:3000/collections/products`, {
+                    fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`, {
 
                         method:"PUT",
                         headers:{
