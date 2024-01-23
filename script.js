@@ -205,7 +205,8 @@ let webstore = new Vue({
                 this.basketForm.push({
                     itemsInfo: {
                         id: element.id,
-                        numSpaces: element.qty
+                        numSpaces: element.qty,
+                        updateInventory: element.availableInventory
                     }
                 })
             })
@@ -235,10 +236,14 @@ let webstore = new Vue({
             this.basketForm.forEach((item) => {
                 const lessonID = item.itemsInfo.id;
                 const numSpaces = item.itemsInfo.numSpaces;
+                const updateSpaces = item.itemsInfo.updateInventory - numSpaces;
                 
                 basketData.push({
                     productID: lessonID,
-                    numSpaces: numSpaces})
+                    numSpaces: numSpaces,
+                    updateInv: updateSpaces,
+
+                })
             });
         
             const orderInfo = {
@@ -266,7 +271,7 @@ let webstore = new Vue({
                 .then(data =>{
                     console.log(data);
 
-                    fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`, {
+                    fetch(`http://localhost:3000/collections/products`, {
 
                         method:"PUT",
                         headers:{
@@ -274,7 +279,9 @@ let webstore = new Vue({
                             'Content-Type': 'application/json'
                         },
 
-                        body: data
+                        body: JSON.stringify({
+                            orderInfo
+                        })
                     })
                     .then((response)=> response.json())
                     .then(data => {
@@ -282,7 +289,7 @@ let webstore = new Vue({
                     })
 
                     alert(data)
-                    // location.reload()
+                    location.reload()
                     
                 })
                 .catch(error => {
@@ -372,7 +379,8 @@ let webstore = new Vue({
                 this.cart.push({
                     id: product.id,
                     qty:1,
-                    subject:product.subject
+                    subject:product.subject,
+                    availableInventory: product.spaces
                 })
             }
             
