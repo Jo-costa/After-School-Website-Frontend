@@ -261,10 +261,9 @@ let webstore = new Vue({
             
             
 
-                fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com//collections/orders/orderPlaced`,
+                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com//collections/orders/orderPlaced`,
                 {
                     method:"POST",
-                    
                     headers:{
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
