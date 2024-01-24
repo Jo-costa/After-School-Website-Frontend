@@ -105,7 +105,6 @@ let webstore = new Vue({
             const basketData = [];
             const updateSpacesArray = []
 
-            console.log(JSON.stringify(this.basketForm));
             //iterate basketForm array that contains info about (id, spaces and item-inventory)
             this.basketForm.forEach((item) => {
                 const lessonID = item.itemsInfo.id;
@@ -125,8 +124,6 @@ let webstore = new Vue({
 
                 })
             });
-
-            console.log(JSON.stringify(updateSpacesArray));
         
             //array to hold all the info to be sent to the server
             const orderInfo = {
@@ -152,7 +149,6 @@ let webstore = new Vue({
                 })
                 .then((response) => response.json())
                 .then(data =>{
-                    console.log(data);
 
                     fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`, {
 
@@ -168,7 +164,6 @@ let webstore = new Vue({
                     })
                     .then((response)=> response.json())
                     .then(data => {
-                        console.log(data);
                     })//end of fetch PUT
 
                     alert(data.msg)
