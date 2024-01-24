@@ -135,7 +135,7 @@ let webstore = new Vue({
             
             
 
-                fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/orders/orderPlaced`,
+                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/orders/orderPlaced`,
                 {
                     method:"POST",
                     headers:{
@@ -150,7 +150,7 @@ let webstore = new Vue({
                 .then((response) => response.json())
                 .then(data =>{
 
-                    fetch(`http://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`, {
+                    fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`, {
 
                         method:"PUT",
                         headers:{
