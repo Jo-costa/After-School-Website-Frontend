@@ -14,6 +14,8 @@
 
 <body>
 
+    
+
     <div id="app">
         <nav>
             <h1 v-text="sitename"></h1>
@@ -39,12 +41,18 @@
                 <div class="search-main-container">
                     <div class="search-container">
                         <div class="search">
-                            <input type="text" class="search-field" placeholder="Search" v-model="search">
+                            <input type="text" class="search-field" placeholder="Search" v-model="search" >
                         </div>
-                        <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type="submit" class="searchBtn"><i class="fa-solid fa-magnifying-glass" ></i></button>
 
 
                     </div>
+                    <ul>
+                        <li v-for= "item in searchResults" :key="item.id">
+                            {{item.subject}}
+
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="subcontainer">

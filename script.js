@@ -1,4 +1,3 @@
-
 let webstore = new Vue({
     el: '#app',
     data: {
@@ -7,22 +6,53 @@ let webstore = new Vue({
         products: null,
         order: {
             firstName: null,
-            
+
             phone: null,
         },
 
         cart: [],
-        userDetailsForm:[],
+        userDetailsForm: [],
         basketForm: [],
 
         search: "",
+        searchResults: [],
+        reuslts: "",
         valid: false, //valid if name last name and phone number has been filled
 
     },
 
+    watch: {
+        search:  function () {
+            if (this.search.length > 0) {
+                 fetch(`http://localhost:3000/collections/products/search?query=${this.search}`)
+                    .then(function (response) {
+
+                        console.log("response"+JSON.stringify(response));
+                        response.json().then(
+                            function (json) {
+                                webstore.products = json
+                                
+                            }
+                        )
+                    })
+
+            }else {
+
+                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
+                    .then(function (response) {
+                        response.json().then(
+                            function (json) {
+                                webstore.products = json
+                            }
+                        )
+                    });
+            }
+        }
+    },
+
     computed: {
 
-        
+
 
         isValid: function () {
 
@@ -39,8 +69,8 @@ let webstore = new Vue({
         cartItemCount: function () {
             let totalQty = 0;
 
-            for(let i = 0; i < this.cart.length; i++){
-                if('qty' in this.cart[i]){
+            for (let i = 0; i < this.cart.length; i++) {
+                if ('qty' in this.cart[i]) {
                     totalQty += this.cart[i].qty;
                 }
             }
@@ -60,7 +90,7 @@ let webstore = new Vue({
             return searchProducts;
         },
 
-        
+
 
 
     },
@@ -68,8 +98,7 @@ let webstore = new Vue({
 
     methods: {
 
-
-        updateBasketInfo(){
+        updateBasketInfo() {
 
             //iterate cart array retreive each item 
             this.cart.forEach((element) => {
@@ -86,7 +115,7 @@ let webstore = new Vue({
             })
 
 
-            
+
         },
         placeOrder() {
 
@@ -97,11 +126,11 @@ let webstore = new Vue({
 
             //retrieve user details and insert into the userDetailsForm array
             this.userDetailsForm.push({
-                firstName:this.order.firstName,
-                phone:this.order.phone,
+                firstName: this.order.firstName,
+                phone: this.order.phone,
             })
 
-        
+
             const basketData = [];
             const updateSpacesArray = []
 
@@ -110,7 +139,7 @@ let webstore = new Vue({
                 const lessonID = item.itemsInfo.id;
                 const numSpaces = item.itemsInfo.numSpaces;
                 const updateSpaces = item.itemsInfo.updateInventory - numSpaces;
-                
+
                 //insert retrieved data into the basketData array
                 basketData.push({
                     productID: lessonID,
@@ -124,7 +153,7 @@ let webstore = new Vue({
 
                 })
             });
-        
+
             //array to hold all the info to be sent to the server
             const orderInfo = {
                 firstName: this.userDetailsForm[0].firstName,
@@ -132,43 +161,41 @@ let webstore = new Vue({
                 basketData
             };
 
-            
-            
 
-                fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/orders/orderPlaced`,
-                {
-                    method:"POST",
-                    headers:{
+
+
+            fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/orders/orderPlaced`, {
+                    method: "POST",
+                    headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-    
-                    body:JSON.stringify({
+
+                    body: JSON.stringify({
                         orderInfo
                     })
                 })
                 .then((response) => response.json())
-                .then(data =>{
+                .then(data => {
 
                     fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`, {
 
-                        method:"PUT",
-                        headers:{
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
+                            method: "PUT",
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
 
-                        body: JSON.stringify({
-                            updateSpacesArray
+                            body: JSON.stringify({
+                                updateSpacesArray
+                            })
                         })
-                    })
-                    .then((response)=> response.json())
-                    .then(data => {
-                    })//end of fetch PUT
+                        .then((response) => response.json())
+                        .then(data => {}) //end of fetch PUT
 
                     alert(data.msg)
                     location.reload()
-                    
+
                 })
                 .catch(error => {
                     console.error("Error:", error);
@@ -177,46 +204,46 @@ let webstore = new Vue({
 
 
 
-            },
+        },
 
         showCheckOut() {
-                this.showProduct = this.showProduct ? false : true; 
+            this.showProduct = this.showProduct ? false : true;
         },
         showProductPage() {
-            this.showProduct = this.showProduct ? false : true; 
+            this.showProduct = this.showProduct ? false : true;
         },
 
-        increase:function(product){
+        increase: function (product) {
 
             //find the product in the products array
             let getItem = this.products.find((element) => element.id == product.id);
 
             //check if the found product spaces is greater than 0
-            if(getItem.spaces > 0){
+            if (getItem.spaces > 0) {
                 product.qty++;
                 getItem.spaces--;
 
             }
         },
 
-        decrease: function(product){
+        decrease: function (product) {
             //find the product in the products array
             let getItem = this.products.find((element) => element.id == product.id);
-        
-            if(product.qty <=1){
+
+            if (product.qty <= 1) {
 
                 //check if each item in the cart array is not equal to the id of the product
                 //to be deleted... create a new array without the deleted item and assign to cart array
                 this.cart = this.cart.filter(item => !(item.id === product.id))
                 getItem.spaces++;
-            }else{
+            } else {
                 product.qty--;
                 getItem.spaces++;
             }
 
         },
 
-        removeAlItems:function(product){
+        removeAlItems: function (product) {
 
             let getItem = this.products.find((element) => element.id == product.id);
 
@@ -227,20 +254,20 @@ let webstore = new Vue({
         },
 
 
-        removeAllItemsFromCart:function(cart){
+        removeAllItemsFromCart: function (cart) {
 
             const deleteAll = cart.map(item => item.id);
-            
+
             cart.splice(0, cart.length)
 
-            this.products.forEach(item=>{
-                if(deleteAll.includes(item.id))
-                item.spaces = 5;
+            this.products.forEach(item => {
+                if (deleteAll.includes(item.id))
+                    item.spaces = 5;
             })
 
-            
 
-            
+
+
         },
 
         addToCart: function (product) {
@@ -248,17 +275,17 @@ let webstore = new Vue({
 
 
             const alreadyInCart = this.cart.findIndex(item => item.id === product.id)
-            if(alreadyInCart !== -1){
+            if (alreadyInCart !== -1) {
                 this.cart[alreadyInCart].qty++;
-            }else{
+            } else {
                 this.cart.push({
                     id: product.id,
-                    qty:1,
-                    subject:product.subject,
+                    qty: 1,
+                    subject: product.subject,
                     availableInventory: product.spaces
                 })
             }
-            
+
             product.spaces--;
         },
 
@@ -282,8 +309,8 @@ let webstore = new Vue({
 
             let getItem = this.products.find((element) => element.id == id.id);
 
-            
-            
+
+
             return getItem
         },
 
@@ -312,13 +339,17 @@ let webstore = new Vue({
 
     created: function () {
         fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
-            .then(function(response){
+            .then(function (response) {
                 response.json().then(
-                    function(json){
+                    function (json) {
                         webstore.products = json
                     }
                 )
-            })
+            });
+
+
+
+
     },
 
 
