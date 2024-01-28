@@ -22,7 +22,7 @@ let webstore = new Vue({
     },
 
     created: function () {
-        fetch(`https://storev3-env.eba-phigz6mm.eu-west-2.elasticbeanstalk.com/collections/products`)
+        fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
             .then(function (response) {
                 response.json().then(
                     function (json) {
