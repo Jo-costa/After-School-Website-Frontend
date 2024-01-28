@@ -21,6 +21,21 @@ let webstore = new Vue({
 
     },
 
+    created: function () {
+        fetch(`https://storev3-env.eba-phigz6mm.eu-west-2.elasticbeanstalk.com/collections/products`)
+            .then(function (response) {
+                response.json().then(
+                    function (json) {
+                        webstore.products = json
+                    }
+                )
+            });
+
+
+
+
+    },
+
     watch: {
         search:  function () {
             if (this.search.length > 0) {
@@ -31,6 +46,7 @@ let webstore = new Vue({
                         response.json().then(
                             function (json) {
                                 webstore.products = json
+                                this.cart = [];
                                 
                             }
                         )
@@ -43,6 +59,7 @@ let webstore = new Vue({
                         response.json().then(
                             function (json) {
                                 webstore.products = json
+                                this.cart = [];
                             }
                         )
                     });
@@ -337,20 +354,7 @@ let webstore = new Vue({
 
     },
 
-    created: function () {
-        fetch(`https://store-env.eba-xvfgdgap.eu-west-2.elasticbeanstalk.com/collections/products`)
-            .then(function (response) {
-                response.json().then(
-                    function (json) {
-                        webstore.products = json
-                    }
-                )
-            });
-
-
-
-
-    },
+    
 
 
     filters: {
