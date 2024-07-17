@@ -3,10 +3,10 @@
 ### A web application that allows users to search and purchase several after school activities. 
 
 ## Features
-  -* Search for activities
-  -* Add activities to the cart
-  -* Remove activities from the cart
-  -* Checkout items from the cart
+  * Search for activities
+  * Add activities to the cart
+  * Remove activities from the cart
+  * Checkout items from the cart
 
 ## Screenshots
 
