@@ -1,8 +1,8 @@
-#CST3145-CW1
+#After School Club
 
-## GitHub Vue.js
+###A web application that allows users to search and purchase several after school activities. 
 
-[Link to GitHub Repository](https://github.com/Jo-costa/CST3145-CW1)
+## Features
 
 ## GitHub Pages
 
