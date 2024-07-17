@@ -1,6 +1,6 @@
 # After School Club
 
-###A web application that allows users to search and purchase several after school activities. 
+### A web application that allows users to search and purchase several after school activities. 
 
 ## Features
   -* Search for activities
